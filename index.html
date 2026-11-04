@@ -9,6 +9,10 @@
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
 <meta name="theme-color" content="#0B2545">
+<link rel="alternate" hreflang="en" href="https://funstock.org/en/">
+<link rel="alternate" hreflang="zh-Hant" href="https://funstock.org/zh-hant/">
+<link rel="alternate" hreflang="zh-Hans" href="https://funstock.org/">
+<link rel="alternate" hreflang="x-default" href="https://funstock.org/">
 <style>
 :root{--navy:#0B2545;--navy2:#13315C;--teal:#0E9F96;--amber:#F5A524;--ink:#1E293B;--muted:#64748B;--line:#E2E8F0;--bg:#F6F8FB;--r:14px}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -112,6 +116,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 footer img{height:38px;width:auto}
 footer .fi{display:flex;flex-direction:column;gap:4px;text-align:right}
 footer a{color:#7EE2D8}
+.lang{display:flex;gap:4px;font-size:13px;font-weight:700;color:#64748B;margin-left:auto}.lang a{padding:3px 6px;border-radius:6px}.lang a:hover{color:var(--teal)}.lang a[aria-current]{color:#fff;background:var(--navy)}
 /* responsive */
 @media (max-width:1000px){
  .hero .wrap{grid-template-columns:1fr;gap:32px;padding-top:40px;padding-bottom:48px}
@@ -167,6 +172,7 @@ footer a{color:#7EE2D8}
   <nav aria-label="主导航">
    <a href="#services">核心业务</a><a href="#products">主营产品</a><a href="#about">关于我们</a><a href="#contact">联系我们</a>
   </nav>
+  <div class="lang" aria-label="Language"><a href="./en/" hreflang="en" lang="en">EN</a><a href="./zh-hant/" hreflang="zh-Hant" lang="zh-Hant">繁</a><a href="./" hreflang="zh-Hans" lang="zh-Hans" aria-current="page">简</a></div>
   <a class="btn btn-p" href="#contact">业务咨询</a>
  </div>
 </header>
