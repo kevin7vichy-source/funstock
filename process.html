@@ -1,1 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>服務流程 - 趣倉有限公司</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { navy: '#0B2545', navy2: '#13315C', teal: '#0E9F96', amber: '#F5A524', ink: '#1E293B', muted: '#64748B', bg: '#F6F8FB' },
+        fontFamily: { sans: ['Inter', 'Noto Sans SC', 'sans-serif'] }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', 'Noto Sans SC', sans-serif; color: #1E293B; background: #F6F8FB; overflow-x: hidden; }
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+  
+  .custom-nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #E2E8F0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .nav-container { max-width: 1280px; margin: 0 auto; padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 700; }
+  .nav-links a { color: #1E293B; text-decoration: none; transition: all 0.3s; }
+  .nav-links a:hover { color: #0E9F96; }
+  .nav-links a.active { color: #0E9F96; border-bottom: 2px solid #0E9F96; padding-bottom: 4px; }
+  .lang-switch { display: flex; align-items: center; gap: 8px; border-left: 1px solid #ccc; padding-left: 16px; margin-left: 8px; font-size: 12px; }
+  .lang-switch a { color: #64748B; }
+  .lang-switch a.active { color: #0E9F96; font-weight: bold; }
+  .menu-toggle { display: none; cursor: pointer; font-size: 28px; color: #0B2545; background: none; border: none; }
+  @media (max-width: 900px) {
+    .menu-toggle { display: block; }
+    .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); flex-direction: column; padding: 20px; gap: 16px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-bottom: 1px solid #ddd; }
+    .nav-links.show { display: flex; }
+    .lang-switch { border-left: none; padding-left: 0; margin-left: 0; border-top: 1px solid #eee; padding-top: 16px; justify-content: flex-start; }
+  }
+</style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
 
+  <header class="custom-nav">
+    <div class="nav-container">
+      <a href="index.html"><img src="assets/logo-horizontal.svg" alt="趣倉 FUNSTOCK" style="height: 40px;"></a>
+      <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+      <div class="nav-links">
+        <a href="index.html">首頁</a>
+        <a href="services.html">核心服務</a>
+        <a href="products.html">產品中心</a>
+        <a href="ecommerce.html">跨境電商</a>
+        <a href="process.html" class="active">服務流程</a>
+        <a href="about.html">關於趣倉</a>
+        <a href="contact.html">聯絡我們</a>
+        <div class="lang-switch">
+          <a href="process.html" class="active">繁</a>
+          <a href="zh-hans/process.html">简</a>
+          <a href="en/process.html">EN</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-24 max-w-4xl mx-auto px-6 flex-grow">
+    <div class="text-center mb-16 reveal active">
+      <h1 class="text-4xl font-extrabold text-navy mb-4">服務流程</h1>
+      <p class="text-muted">透明高效的標準化流程，確保您的出海無憂。</p>
+    </div>
+    
+    <!-- 发光时间轴 -->
+    <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-teal before:to-transparent">
+      
+      <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal">
+        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-teal text-white font-bold shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">1</div>
+        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <h3 class="font-bold text-navy mb-2">業務咨詢與評估</h3>
+          <p class="text-sm text-muted">了解客戶需求，評估產品與市場匹配度。</p>
+        </div>
+      </div>
+      
+      <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal" style="transition-delay: 0.1s;">
+        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-teal text-white font-bold shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">2</div>
+        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <h3 class="font-bold text-navy mb-2">選品與技術對接</h3>
+          <p class="text-sm text-muted">確定產品線，對接工廠與技術方案。</p>
+        </div>
+      </div>
+
+      <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal" style="transition-delay: 0.2s;">
+        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-teal text-white font-bold shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">3</div>
+        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <h3 class="font-bold text-navy mb-2">生產與質檢</h3>
+          <p class="text-sm text-muted">嚴格把控生產進度與產品質量。</p>
+        </div>
+      </div>
+
+      <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal" style="transition-delay: 0.3s;">
+        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-teal text-white font-bold shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">4</div>
+        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+          <h3 class="font-bold text-navy mb-2">跨境物流與上架</h3>
+          <p class="text-sm text-muted">處理報關物流，完成平台店鋪上架與運營。</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-navy text-slate-400 py-12 border-t border-white/10 mt-auto">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+      <img src="assets/logo-horizontal-white.svg" alt="趣倉 FUNSTOCK" class="h-10">
+      <div class="text-center md:text-right text-xs"><p>© 2026 趣倉有限公司 FUNSTOCK LIMITED. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('active'); }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el) => { observer.observe(el); });
+  </script>
+</body>
+</html>
