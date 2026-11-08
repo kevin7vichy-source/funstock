@@ -48,23 +48,127 @@
 </head>
 <body class="antialiased">
 
-<header class="custom-nav">
-  <div class="nav-container">
-    <a href="index.html"><img src="assets/logo-horizontal.svg" alt="趣倉 FUNSTOCK" style="height: 40px;"></a>
-    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
-    <div class="nav-links">
-      <a href="index.html" class="active">首頁</a>
-      <a href="services.html">核心服務</a>
-      <a href="products.html">產品中心</a>
-      <a href="ecommerce.html">跨境電商</a>
-      <a href="process.html">服務流程</a>
-      <a href="about.html">關於趣倉</a>
-      <a href="contact.html">聯絡我們</a>
-      <div class="lang-switch">
-        <a href="index.html" class="active">繁</a>
-        <a href="zh-hans/index.html">简</a>
-        <a href="en/index.html">EN</a>
+  <!-- 导航栏 -->
+  <header class="custom-nav">
+    <div class="nav-container">
+      <a href="index.html"><img src="assets/logo-horizontal.svg" alt="趣倉 FUNSTOCK" style="height: 40px;"></a>
+      <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+      <div class="nav-links">
+        <a href="index.html" class="active">首頁</a>
+        <a href="services.html">核心服務</a>
+        <a href="products.html">產品中心</a>
+        <a href="ecommerce.html">跨境電商</a>
+        <a href="process.html">服務流程</a>
+        <a href="about.html">關於趣倉</a>
+        <a href="contact.html">聯絡我們</a>
+        <div class="lang-switch">
+          <a href="index.html" class="active">繁</a>
+          <a href="zh-hans/index.html">简</a>
+          <a href="en/index.html">EN</a>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
+
+  <main id="top">
+    <!-- 首屏 Hero 区 -->
+    <section class="hero-bg text-white overflow-hidden relative py-24">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-teal/20 rounded-full blur-3xl"></div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal active">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-teal-200 mb-6">
+            <span class="w-2 h-2 rounded-full bg-amber animate-pulse"></span>
+            連接全球智慧供應鏈 · 趣倉有限公司
+          </div>
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+            賦能中國智造出海<br>
+            <span class="text-teal-300">一站式跨境貿易與電商</span>
+          </h1>
+          <p class="text-lg text-slate-300 mb-10 leading-relaxed">
+            紮根香港，專注技術開發、消費電子與五金門鎖進出口，以及 Amazon/Shopee/TikTok 跨境電商代運營。
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="products.html" class="px-8 py-3.5 bg-amber hover:bg-amber-400 text-navy font-bold rounded-full transition shadow-lg flex items-center gap-2 transform hover:-translate-y-1">
+              探索主營產品 →
+            </a>
+            <a href="contact.html" class="px-8 py-3.5 border border-white/50 hover:bg-white/10 text-white font-bold rounded-full transition">
+              聯繫商務洽談
+            </a>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 reveal" style="transition-delay: 0.2s;">
+          <a href="products.html" class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl img-hover-zoom">
+            <img src="assets/img/electronics.webp" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <span class="absolute bottom-4 left-4 font-bold text-sm">消費電子</span>
+          </a>
+          <a href="products.html" class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl img-hover-zoom translate-y-8">
+            <img src="assets/img/hardware.webp" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <span class="absolute bottom-4 left-4 font-bold text-sm">五金門鎖</span>
+          </a>
+          <a href="products.html" class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl img-hover-zoom -translate-y-4">
+            <img src="assets/img/fpc.webp" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <span class="absolute bottom-4 left-4 font-bold text-sm">柔性線路板</span>
+          </a>
+          <a href="ecommerce.html" class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl img-hover-zoom translate-y-4">
+            <img src="assets/img/ecommerce.webp" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <span class="absolute bottom-4 left-4 font-bold text-sm">跨境電商</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 核心业务概览 -->
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+          <div class="text-teal font-bold text-sm tracking-widest uppercase mb-2">Core Services</div>
+          <h2 class="text-3xl font-extrabold text-navy">全方位出海服務</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-bg rounded-2xl p-8 hover:shadow-xl transition transform hover:-translate-y-2 reveal">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-navy to-teal text-white flex items-center justify-center text-2xl mb-6">💻</div>
+            <h3 class="text-xl font-bold text-navy mb-3">技術咨詢與開發</h3>
+            <p class="text-sm text-muted">為企業提供消費電子、智能硬件及柔性線路板的技術方案與定制開發。</p>
+          </div>
+          <div class="bg-bg rounded-2xl p-8 hover:shadow-xl transition transform hover:-translate-y-2 reveal" style="transition-delay: 0.1s;">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-navy to-teal text-white flex items-center justify-center text-2xl mb-6">🚢</div>
+            <h3 class="text-xl font-bold text-navy mb-3">進出口貿易</h3>
+            <p class="text-sm text-muted">深耕消費電子與五金門鎖類目的國際貿易，提供高效合規的供應鏈服務。</p>
+          </div>
+          <div class="bg-bg rounded-2xl p-8 hover:shadow-xl transition transform hover:-translate-y-2 reveal" style="transition-delay: 0.2s;">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-navy to-teal text-white flex items-center justify-center text-2xl mb-6">🛒</div>
+            <h3 class="text-xl font-bold text-navy mb-3">跨境電商代運營</h3>
+            <p class="text-sm text-muted">專業 Amazon、Shopee、TikTok 店鋪搭建與全案營銷運營。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 底部 -->
+  <footer class="bg-navy text-slate-400 py-12 border-t border-white/10 mt-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+      <img src="assets/logo-horizontal-white.svg" alt="趣倉 FUNSTOCK" class="h-10">
+      <div class="text-center md:text-right space-y-1 text-xs">
+        <p>Flat 4(20), 4/F, Block D, Tuen Mun Industrial Centre, No.2 San Ping Circuit, Tuen Mun, New Territories.</p>
+        <p>© 2026 趣倉有限公司 FUNSTOCK LIMITED. All rights reserved. · <a href="mailto:Funstockhk@gmail.com" class="text-teal-300 hover:text-white transition">Funstockhk@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el) => { observer.observe(el); });
+  </script>
+</body>
+</html>
