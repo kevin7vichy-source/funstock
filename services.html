@@ -1,1 +1,56 @@
-
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>核心服務 - 趣倉有限公司</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>tailwind.config={theme:{extend:{colors:{navy:'#0B2545',navy2:'#13315C',teal:'#0E9F96',amber:'#F5A524',ink:'#1E293B',muted:'#64748B',bg:'#F6F8FB'},fontFamily:{sans:['Inter','Noto Sans SC','sans-serif']}}}}</script>
+<style>
+  body{font-family:'Inter','Noto Sans SC',sans-serif;color:#1E293B;background:#fff;overflow-x:hidden}
+  .custom-nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #E2E8F0}
+  .nav-container{max-width:1280px;margin:0 auto;padding:15px 24px;display:flex;justify-content:space-between;align-items:center}
+  .nav-links{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:700}
+  .nav-links a{color:#1E293B;text-decoration:none;transition:all 0.3s}.nav-links a:hover{color:#0E9F96}
+  .nav-links a.active{color:#0E9F96;border-bottom:2px solid #0E9F96;padding-bottom:4px}
+  .lang-switch{display:flex;align-items:center;gap:8px;border-left:1px solid #ccc;padding-left:16px;margin-left:8px;font-size:12px}
+  .lang-switch a{color:#64748B}.lang-switch a.active{color:#0E9F96;font-weight:bold}
+  .menu-toggle{display:none;cursor:pointer;font-size:28px;color:#0B2545;background:none;border:none}
+  @media (max-width:900px){.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:rgba(255,255,255,0.98);flex-direction:column;padding:20px;gap:16px;box-shadow:0 10px 15px rgba(0,0,0,0.1);border-bottom:1px solid #ddd}.nav-links.show{display:flex}.lang-switch{border-left:none;padding-left:0;margin-left:0;border-top:1px solid #eee;padding-top:16px;justify-content:flex-start}}
+</style>
+</head>
+<body class="antialiased">
+<header class="custom-nav">
+  <div class="nav-container">
+    <a href="index.html"><img src="assets/logo-horizontal.svg" alt="趣倉 FUNSTOCK" style="height:40px"></a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+    <div class="nav-links">
+      <a href="index.html">首頁</a><a href="services.html" class="active">核心服務</a><a href="products.html">產品中心</a><a href="ecommerce.html">跨境電商</a><a href="process.html">服務流程</a><a href="about.html">關於趣倉</a><a href="contact.html">聯絡我們</a>
+      <div class="lang-switch"><a href="services.html" class="active">繁</a><a href="zh-hans/services.html">简</a><a href="en/services.html">EN</a></div>
+    </div>
+  </div>
+</header>
+<main class="py-24 max-w-5xl mx-auto px-6">
+  <div class="text-center mb-16"><h1 class="text-4xl font-extrabold text-navy mb-4">核心服務</h1><p class="text-muted">從技術研發到全球貿易，再到數字化營銷，一站式賦能。</p></div>
+  <div class="space-y-12">
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col md:flex-row gap-8">
+      <div class="md:w-1/3"><h2 class="text-2xl font-bold text-navy mb-4">技術咨詢與開發</h2></div>
+      <div class="md:w-2/3"><p class="text-muted leading-relaxed">專注於消費電子、智能硬件及 FPC 柔性線路板的技術咨詢、架構設計與定制開發，助力產品快速迭代。</p></div>
+    </div>
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col md:flex-row gap-8">
+      <div class="md:w-1/3"><h2 class="text-2xl font-bold text-navy mb-4">消費電子與五金門鎖貿易</h2></div>
+      <div class="md:w-2/3"><p class="text-muted leading-relaxed">連接中國優質製造，專注消費電子與五金門鎖的國際雙向貿易，提供合規、高效的報關與物流服務。</p></div>
+    </div>
+    <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col md:flex-row gap-8">
+      <div class="md:w-1/3"><h2 class="text-2xl font-bold text-navy mb-4">跨境電商代運營</h2></div>
+      <div class="md:w-2/3"><p class="text-muted leading-relaxed">精通 Amazon、Shopee、TikTok 等主流平台，提供店鋪搭建、選品、數字營銷及全案代運營服務。</p></div>
+    </div>
+  </div>
+</main>
+<footer class="bg-navy text-slate-400 py-12 border-t border-white/10 mt-12">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+    <img src="assets/logo-horizontal-white.svg" alt="趣倉 FUNSTOCK" class="h-10">
+    <div class="text-center md:text-right text-xs"><p>© 2026 趣倉有限公司 FUNSTOCK LIMITED. All rights reserved.</p></div>
+  </div>
+</footer>
+</body>
+</html>
