@@ -18,9 +18,12 @@
 </script>
 <style>
   body { font-family: 'Inter', 'Noto Sans SC', sans-serif; color: #1E293B; background: #F6F8FB; overflow-x: hidden; }
+  
+  /* 滚动入场动效 */
   .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
   .reveal.active { opacity: 1; transform: translateY(0); }
-  
+
+  /* 导航栏 */
   .custom-nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #E2E8F0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
   .nav-container { max-width: 1280px; margin: 0 auto; padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; }
   .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 700; }
@@ -41,6 +44,7 @@
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
+  <!-- 导航栏 -->
   <header class="custom-nav">
     <div class="nav-container">
       <a href="index.html"><img src="assets/logo-horizontal.svg" alt="趣倉 FUNSTOCK" style="height: 40px;"></a>
@@ -62,50 +66,67 @@
     </div>
   </header>
 
-  <main class="py-24 max-w-4xl mx-auto px-6 flex-grow">
-    <div class="text-center mb-16 reveal active">
-      <h1 class="text-4xl font-extrabold text-navy mb-4">服務流程</h1>
-      <p class="text-muted">透明高效的標準化流程，確保您的出海無憂。</p>
+  <!-- 顶部标题 -->
+  <section class="pt-20 pb-10 text-center">
+    <div class="max-w-3xl mx-auto px-6 reveal active">
+      <div class="text-teal font-bold text-sm tracking-widest uppercase mb-3">Our Process</div>
+      <h1 class="text-4xl font-extrabold text-navy mb-6">服務流程</h1>
+      <p class="text-muted text-lg leading-relaxed">透明高效的標準化流程，確保您的出海無憂。</p>
     </div>
-    
-    <!-- 发光时间轴 -->
-    <div class="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-teal before:to-transparent">
+  </section>
+
+  <!-- 时间轴区域 -->
+  <main class="flex-grow pb-24">
+    <div class="max-w-4xl mx-auto px-6">
       
-      <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal">
-        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-teal text-white font-bold shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">1</div>
-        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <h3 class="font-bold text-navy mb-2">業務咨詢與評估</h3>
-          <p class="text-sm text-muted">了解客戶需求，評估產品與市場匹配度。</p>
-        </div>
-      </div>
-      
-      <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal" style="transition-delay: 0.1s;">
-        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-teal text-white font-bold shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">2</div>
-        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <h3 class="font-bold text-navy mb-2">選品與技術對接</h3>
-          <p class="text-sm text-muted">確定產品線，對接工廠與技術方案。</p>
-        </div>
-      </div>
+      <!-- 发光中轴线 (在手机端隐藏) -->
+      <div class="hidden md:block absolute left-1/2 w-0.5 h-[60%] bg-gradient-to-b from-teal/20 via-teal to-teal/20 -translate-x-1/2 z-0 mt-10"></div>
 
-      <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal" style="transition-delay: 0.2s;">
-        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-teal text-white font-bold shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">3</div>
-        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <h3 class="font-bold text-navy mb-2">生產與質檢</h3>
-          <p class="text-sm text-muted">嚴格把控生產進度與產品質量。</p>
+      <div class="space-y-12 relative z-10">
+        
+        <!-- 步骤 1 -->
+        <div class="relative flex flex-col md:flex-row items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal">
+          <!-- 圆圈数字 -->
+          <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-bg bg-teal text-white font-bold text-lg shadow-[0_0_15px_rgba(14,159,150,0.4)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">1</div>
+          <!-- 卡片 -->
+          <div class="w-full md:w-[calc(50%-3rem)] mt-6 md:mt-0 bg-white p-8 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100 hover:shadow-[0_10px_40px_rgba(14,159,150,0.15)] hover:border-teal/30 transition duration-300">
+            <h3 class="font-extrabold text-navy text-xl mb-2">業務咨詢與評估</h3>
+            <p class="text-sm text-muted leading-relaxed">了解客戶需求，評估產品與市場匹配度。我們將為您初步篩選適合的出海路徑。</p>
+          </div>
         </div>
-      </div>
 
-      <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal" style="transition-delay: 0.3s;">
-        <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-white bg-teal text-white font-bold shadow-md shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2">4</div>
-        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <h3 class="font-bold text-navy mb-2">跨境物流與上架</h3>
-          <p class="text-sm text-muted">處理報關物流，完成平台店鋪上架與運營。</p>
+        <!-- 步骤 2 -->
+        <div class="relative flex flex-col md:flex-row items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal" style="transition-delay: 0.1s;">
+          <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-bg bg-teal text-white font-bold text-lg shadow-[0_0_15px_rgba(14,159,150,0.4)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">2</div>
+          <div class="w-full md:w-[calc(50%-3rem)] mt-6 md:mt-0 bg-white p-8 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100 hover:shadow-[0_10px_40px_rgba(14,159,150,0.15)] hover:border-teal/30 transition duration-300">
+            <h3 class="font-extrabold text-navy text-xl mb-2">選品與技術對接</h3>
+            <p class="text-sm text-muted leading-relaxed">確定產品線，對接源頭工廠與技術方案。進行合規性審查，確保產品符合目的國標準。</p>
+          </div>
         </div>
-      </div>
 
+        <!-- 步骤 3 -->
+        <div class="relative flex flex-col md:flex-row items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal" style="transition-delay: 0.2s;">
+          <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-bg bg-teal text-white font-bold text-lg shadow-[0_0_15px_rgba(14,159,150,0.4)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">3</div>
+          <div class="w-full md:w-[calc(50%-3rem)] mt-6 md:mt-0 bg-white p-8 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100 hover:shadow-[0_10px_40px_rgba(14,159,150,0.15)] hover:border-teal/30 transition duration-300">
+            <h3 class="font-extrabold text-navy text-xl mb-2">生產與質檢</h3>
+            <p class="text-sm text-muted leading-relaxed">嚴格把控生產進度與產品質量。我們提供專業的第三方驗貨服務，確保大貨品質無憂。</p>
+          </div>
+        </div>
+
+        <!-- 步骤 4 -->
+        <div class="relative flex flex-col md:flex-row items-center justify-between md:justify-normal md:odd:flex-row-reverse group reveal" style="transition-delay: 0.3s;">
+          <div class="flex items-center justify-center w-12 h-12 rounded-full border-4 border-bg bg-teal text-white font-bold text-lg shadow-[0_0_15px_rgba(14,159,150,0.4)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">4</div>
+          <div class="w-full md:w-[calc(50%-3rem)] mt-6 md:mt-0 bg-white p-8 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-gray-100 hover:shadow-[0_10px_40px_rgba(14,159,150,0.15)] hover:border-teal/30 transition duration-300">
+            <h3 class="font-extrabold text-navy text-xl mb-2">跨境物流與上架</h3>
+            <p class="text-sm text-muted leading-relaxed">處理報關物流，完成平台店鋪上架與運營。實時跟蹤物流軌跡，確保產品安全準時到達。</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </main>
 
+  <!-- 底部 -->
   <footer class="bg-navy text-slate-400 py-12 border-t border-white/10 mt-auto">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
       <img src="assets/logo-horizontal-white.svg" alt="趣倉 FUNSTOCK" class="h-10">
@@ -113,6 +134,7 @@
     </div>
   </footer>
 
+  <!-- 滚动动画脚本 -->
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
