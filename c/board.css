@@ -1,16 +1,12 @@
 /* =========================================================
-   FUNSTOCK 客户看板样式
-   - 色板 / 字体 / 圆角 / 阴影对齐官网设计系统
-   - 无外部依赖，兼容 CSP: default-src 'none'
+   FUNSTOCK 内部看板样式 (保密专用)
    ========================================================= */
 
 :root{
-  /* FUNSTOCK 设计令牌 */
   --navy:   #0B2545;
   --navy2:  #13315C;
   --teal:   #0E9F96;
-  --teal-6: #0C8A82;   /* hover 深一档 */
-  --amber:  #F5A524;
+  --teal-6: #0C8A82;
   --ink:    #1E293B;
   --muted:  #64748B;
   --bg:     #F6F8FB;
@@ -19,7 +15,6 @@
   --danger: #DC2626;
 
   --radius-lg: 24px;
-  --radius-md: 12px;
   --radius-sm: 10px;
   --shadow-card: 0 20px 50px rgba(0,0,0,.05);
   --shadow-btn:  0 10px 24px rgba(14,159,150,.25);
@@ -42,11 +37,9 @@ body{
 }
 
 a{ color: var(--teal); text-decoration:none; }
-a:hover{ color: var(--teal-6); }
-
 .hidden{ display:none !important; }
 
-/* ---------- 顶部品牌条 ---------- */
+/* ---------- 顶部 ---------- */
 .top{
   position: sticky;
   top:0;
@@ -65,15 +58,30 @@ a:hover{ color: var(--teal-6); }
   gap:16px;
 }
 
-.brand-link{ display:inline-flex; align-items:center; }
-
 .logo{ height: 36px; width:auto; display:block; }
+
+.header-actions{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.badge-internal {
+  background: rgba(245, 165, 36, 0.15);
+  color: #F5A524;
+  border: 1px solid rgba(245, 165, 36, 0.3);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
 
 .back-link{
   font-size: 13px;
   font-weight: 700;
   color: rgba(255,255,255,.85);
-  padding: 8px 14px;
+  padding: 6px 14px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.25);
   transition: all .25s ease;
@@ -104,13 +112,12 @@ a:hover{ color: var(--teal-6); }
 
 /* ---------- 登录门 ---------- */
 .login{
-  max-width: 520px;
+  max-width: 480px;
   margin: 24px auto 0;
   position: relative;
   overflow: hidden;
 }
 
-/* 与官网一致的柔和青绿装饰光 */
 .login::before{
   content:"";
   position:absolute;
@@ -137,7 +144,6 @@ a:hover{ color: var(--teal-6); }
   font-weight: 800;
   color: var(--navy);
   margin: 0 0 12px;
-  letter-spacing: .01em;
 }
 
 .muted{
@@ -146,26 +152,25 @@ a:hover{ color: var(--teal-6); }
   margin: 0 0 10px;
 }
 
-.small{ font-size: 12px; }
+.small{ font-size: 12px; line-height: 1.5; margin-top: 16px; }
 
 /* ---------- 表单 ---------- */
 form#f{ margin-top: 22px; }
 
-.field{ display:block; margin-bottom: 18px; }
+.field{ display:block; margin-bottom: 20px; }
 
 .field-label{
   display:block;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
-  color: #334155;
+  color: var(--navy);
   margin-bottom: 8px;
-  letter-spacing: .02em;
 }
 
 input#pw{
   width:100%;
-  padding: 13px 16px;
-  font-size: 14px;
+  padding: 14px 16px;
+  font-size: 15px;
   color: var(--ink);
   background: var(--bg);
   border: 1px solid var(--line);
@@ -181,10 +186,9 @@ input#pw:focus{
   outline:none;
 }
 
-/* 主按钮：对齐官网 teal 圆角按钮 */
 button#go{
   width:100%;
-  padding: 14px 18px;
+  padding: 15px 18px;
   font-size: 15px;
   font-weight: 800;
   color:#fff;
@@ -199,7 +203,7 @@ button#go{
 
 button#go:hover{ background: var(--teal-6); transform: translateY(-1px); }
 button#go:active{ transform: translateY(0); }
-button#go:disabled{ opacity:.6; cursor:not-allowed; transform:none; box-shadow:none; }
+button#go:disabled{ opacity:.6; cursor:not-allowed; transform:none; }
 
 /* ---------- 错误提示 ---------- */
 .err{
@@ -207,17 +211,16 @@ button#go:disabled{ opacity:.6; cursor:not-allowed; transform:none; box-shadow:n
   background: #FEF2F2;
   border: 1px solid #FECACA;
   border-radius: var(--radius-sm);
-  padding: 10px 14px;
+  padding: 12px 14px;
   font-size: 13px;
   margin: 4px 0 16px;
 }
 
-/* ---------- 看板内容容器（app.js 渲染区） ---------- */
+/* ---------- 看板内容容器 ---------- */
 #app{
   max-width: 920px;
   margin: 0 auto;
 }
-
 #app .card{ margin-bottom: 20px; }
 
 /* ---------- 页脚 ---------- */
@@ -226,30 +229,29 @@ footer{
   background: var(--navy);
   color: rgba(148,163,184,.9);
   border-top: 1px solid rgba(255,255,255,.08);
-  padding: 32px 24px;
+  padding: 24px;
   text-align:center;
   font-size: 12px;
 }
-footer p{ margin: 4px 0; max-width: 760px; margin-left:auto; margin-right:auto; }
+footer p{ margin: 4px 0; }
 
 footer .slogan{
   color: var(--teal);
   font-weight: 800;
   letter-spacing: .14em;
   font-size: 13px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
-footer .copyright{ margin-top: 10px; color: rgba(148,163,184,.7); }
-footer a{ color: #5EEAD4; }
-footer a:hover{ color:#fff; }
+footer .copyright{ color: rgba(148,163,184,.7); }
 
 /* ---------- 响应式 ---------- */
 @media (max-width: 640px){
-  .brand-row{ padding: 12px 16px; }
+  .brand-row{ padding: 12px 16px; flex-wrap: wrap; gap: 10px; }
   .logo{ height: 30px; }
   #main{ padding: 28px 16px 48px; }
   .card{ padding: 24px; border-radius: 18px; }
   .login{ margin-top: 8px; }
   .login h1{ font-size: 24px; }
+  .header-actions { width: 100%; justify-content: space-between; }
 }
