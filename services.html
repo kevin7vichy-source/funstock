@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-HK">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,23 +7,14 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: { navy: '#0B2545', navy2: '#13315C', teal: '#0E9F96', amber: '#F5A524', ink: '#1E293B', muted: '#64748B', bg: '#F6F8FB' },
-        fontFamily: { sans: ['Inter', 'Noto Sans SC', 'sans-serif'] }
-      }
-    }
-  }
+  tailwind.config = { theme: { extend: { colors: { navy: '#0B2545', navy2: '#13315C', teal: '#0E9F96', amber: '#F5A524', ink: '#1E293B', muted: '#64748B', bg: '#F6F8FB' }, fontFamily: { sans: ['Inter', 'Noto Sans SC', 'sans-serif'] } } } }
 </script>
 <style>
-  body { font-family: 'Inter', 'Noto Sans SC', sans-serif; color: #1E293B; background: #F6F8FB; overflow-x: hidden; }
-  
-  /* 滚动入场动效 */
+  body { font-family: 'Inter', 'Noto Sans SC', sans-serif; color: #1E293B; background: #fff; overflow-x: hidden; }
   .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
   .reveal.active { opacity: 1; transform: translateY(0); }
-
-  /* 导航栏 */
+  
+  /* 防闪烁的全局导航占位样式 */
   .custom-nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #E2E8F0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
   .nav-container { max-width: 1280px; margin: 0 auto; padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; }
   .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 700; }
@@ -36,137 +27,44 @@
   .menu-toggle { display: none; cursor: pointer; font-size: 28px; color: #0B2545; background: none; border: none; }
   @media (max-width: 900px) {
     .menu-toggle { display: block; }
-    .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); flex-direction: column; padding: 20px; gap: 16px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-bottom: 1px solid #ddd; }
+    .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.98); flex-direction: column; padding: 20px; gap: 16px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-bottom: 1px solid #ddd; }
     .nav-links.show { display: flex; }
-    .lang-switch { border-left: none; padding-left: 0; margin-left: 0; border-top: 1px solid #eee; padding-top: 16px; justify-content: flex-start; }
+    .lang-switch { border-left: none; padding-left: 0; margin-left: 0; border-top: 1px solid #eee; padding-top: 16px; justify-content: flex-start; width: 100%; }
   }
 </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-  <!-- 导航栏 -->
-  <header class="custom-nav">
-    <div class="nav-container">
-      <a href="index.html"><img src="assets/logo-horizontal.svg" alt="趣倉 FUNSTOCK" style="height: 40px;"></a>
-      <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
-      <div class="nav-links">
-        <a href="index.html">首頁</a>
-        <a href="services.html" class="active">核心服務</a>
-        <a href="products.html">產品中心</a>
-        <a href="ecommerce.html">跨境電商</a>
-        <a href="process.html">服務流程</a>
-        <a href="about.html">關於趣倉</a>
-        <a href="contact.html">聯絡我們</a>
-        <div class="lang-switch">
-          <a href="services.html" class="active">繁</a>
-          <a href="zh-hans/services.html">简</a>
-          <a href="en/services.html">EN</a>
-        </div>
-      </div>
+  <div id="global-header"></div>
+
+  <main class="flex-grow py-24 max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16 reveal active">
+      <h1 class="text-4xl font-extrabold text-navy mb-4">核心服務</h1>
+      <p class="text-muted">從技術研發到全球貿易，再到數字化營銷，一站式賦能。</p>
     </div>
-  </header>
-
-  <!-- 首屏横幅 (增加视觉冲击力) -->
-  <section class="bg-navy text-white py-20 relative overflow-hidden">
-    <!-- 装饰光晕 -->
-    <div class="absolute top-0 right-0 w-96 h-96 bg-teal/20 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 left-0 w-72 h-72 bg-amber/10 rounded-full blur-3xl"></div>
-    
-    <div class="max-w-5xl mx-auto px-6 relative z-10 text-center reveal active">
-      <div class="text-teal-300 font-bold text-sm tracking-widest uppercase mb-4">Core Services</div>
-      <h1 class="text-4xl md:text-5xl font-extrabold mb-6 tracking-wide">全方位出海賦能</h1>
-      <p class="text-slate-300 max-w-2xl mx-auto text-lg leading-relaxed">
-        從技術研發、供應鏈貿易到數字化營銷，我們為中國智造出海提供一站式、全鏈路的高效解決方案。
-      </p>
-    </div>
-  </section>
-
-  <!-- 核心服务矩阵 (毛玻璃卡片) -->
-  <main class="flex-grow py-24 -mt-10 relative z-20">
-    <div class="max-w-5xl mx-auto px-6 space-y-8">
-      
-      <!-- 服务 1 -->
-      <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-100 flex flex-col md:flex-row gap-8 items-center reveal transform hover:-translate-y-2 transition duration-300">
-        <div class="md:w-1/3 w-full">
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-navy to-teal text-white flex items-center justify-center text-3xl mb-6 shadow-lg">💻</div>
-          <h2 class="text-2xl font-bold text-navy mb-2">技術咨詢與開發</h2>
-          <div class="text-teal font-bold text-sm">TECH CONSULTING</div>
-        </div>
-        <div class="md:w-2/3 w-full border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
-          <p class="text-muted leading-relaxed mb-4 text-base">
-            專注於消費電子、智能硬件及 FPC 柔性線路板的底層技術咨詢與架構設計。我們提供從產品概念、原型打樣到量產落地的定制化解決方案，助力企業快速完成技術迭代與產品升級。
-          </p>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm font-semibold text-slate-700">
-            <li class="flex items-center gap-2"><span class="text-teal">✓</span> 硬件方案評審與優化</li>
-            <li class="flex items-center gap-2"><span class="text-teal">✓</span> 柔性板工藝技術支持</li>
-          </ul>
-        </div>
+    <div class="space-y-12">
+      <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col md:flex-row gap-8 reveal">
+        <div class="md:w-1/3"><h2 class="text-2xl font-bold text-navy mb-4">技術咨詢與開發</h2></div>
+        <div class="md:w-2/3"><p class="text-muted leading-relaxed">專注於消費電子、智能硬件及 FPC 柔性線路板的技術咨詢、架構設計與定制開發，助力產品快速迭代。</p></div>
       </div>
-
-      <!-- 服务 2 -->
-      <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-100 flex flex-col md:flex-row gap-8 items-center reveal transform hover:-translate-y-2 transition duration-300" style="transition-delay: 0.1s;">
-        <div class="md:w-1/3 w-full">
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-navy to-teal text-white flex items-center justify-center text-3xl mb-6 shadow-lg">🚢</div>
-          <h2 class="text-2xl font-bold text-navy mb-2">消費電子與五金門鎖貿易</h2>
-          <div class="text-teal font-bold text-sm">GLOBAL TRADE</div>
-        </div>
-        <div class="md:w-2/3 w-full border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
-          <p class="text-muted leading-relaxed mb-4 text-base">
-            連接中國優質製造產能與全球買家。深耕消費電子與五金門鎖類目的國際雙向貿易，提供從源頭工廠篩選、質量驗收、合規報關到跨境物流倉儲的全套供應鏈服務。
-          </p>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm font-semibold text-slate-700">
-            <li class="flex items-center gap-2"><span class="text-teal">✓</span> 全球供應鏈資源整合</li>
-            <li class="flex items-center gap-2"><span class="text-teal">✓</span> 合規報關與物流跟蹤</li>
-          </ul>
-        </div>
+      <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col md:flex-row gap-8 reveal">
+        <div class="md:w-1/3"><h2 class="text-2xl font-bold text-navy mb-4">消費電子與五金門鎖貿易</h2></div>
+        <div class="md:w-2/3"><p class="text-muted leading-relaxed">連接中國優質製造，專注消費電子與五金門鎖的國際雙向貿易，提供合規、高效的報關與物流服務。</p></div>
       </div>
-
-      <!-- 服务 3 -->
-      <div class="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-100 flex flex-col md:flex-row gap-8 items-center reveal transform hover:-translate-y-2 transition duration-300" style="transition-delay: 0.2s;">
-        <div class="md:w-1/3 w-full">
-          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-navy to-teal text-white flex items-center justify-center text-3xl mb-6 shadow-lg">🛒</div>
-          <h2 class="text-2xl font-bold text-navy mb-2">跨境電商代運營</h2>
-          <div class="text-teal font-bold text-sm">E-COMMERCE</div>
-        </div>
-        <div class="md:w-2/3 w-full border-t md:border-t-0 md:border-l border-gray-200 pt-6 md:pt-0 md:pl-8">
-          <p class="text-muted leading-relaxed mb-4 text-base">
-            精通 Amazon、Shopee、TikTok 等主流跨境平台。提供店鋪入駐搭建、本土化選品策略、數據驅動的數字營銷及全案代運營服務，幫助中國品牌精準觸達海外消費者。
-          </p>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm font-semibold text-slate-700">
-            <li class="flex items-center gap-2"><span class="text-teal">✓</span> 主流平台店鋪搭建</li>
-            <li class="flex items-center gap-2"><span class="text-teal">✓</span> 全渠道數字營銷策劃</li>
-          </ul>
-        </div>
+      <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col md:flex-row gap-8 reveal">
+        <div class="md:w-1/3"><h2 class="text-2xl font-bold text-navy mb-4">跨境電商代運營</h2></div>
+        <div class="md:w-2/3"><p class="text-muted leading-relaxed">精通 Amazon、Shopee、TikTok 等主流平台，提供店鋪搭建、選品、數字營銷及全案代運營服務。</p></div>
       </div>
-
     </div>
   </main>
 
-   <!-- 统一版底部 -->
-  <footer class="bg-navy text-slate-400 py-12 border-t border-white/10 mt-auto">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
-      
-      <!-- 左侧 Logo -->
-      <div class="shrink-0">
-        <img src="assets/logo-horizontal-white.svg" alt="趣倉 FUNSTOCK" class="h-10">
-      </div>
-      
-      <!-- 右侧信息 -->
-      <div class="text-center md:text-right text-xs leading-relaxed">
-        <p class="mb-1">Flat 4(20), 4/F, Block D, Tuen Mun Industrial Centre, No.2 San Ping Circuit, Tuen Mun, New Territories.</p>
-        <p>© 2026 趣倉有限公司 FUNSTOCK LIMITED. All rights reserved. · <a href="mailto:Funstockhk@gmail.com" class="text-teal-300 hover:text-white transition">Funstockhk@gmail.com</a></p>
-      </div>
-      
-    </div>
-  </footer>
+  <div id="global-footer"></div>
 
-  <!-- 滚动动画脚本 -->
+  <script src="assets/js/global.js"></script>
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('active'); }
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach((el) => { observer.observe(el); });
