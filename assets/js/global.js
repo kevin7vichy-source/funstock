@@ -4,7 +4,7 @@
 (function() {
   // 1. 获取当前路径，判断语种和高亮
   const path = window.location.pathname;
-  const page = path.split("/").pop() || "index.html";
+  const page = path.split("/").pop() || "index.html"; // 获取当前文件名，如 services.html
   const isEn = path.includes('/en/');
   const isHans = path.includes('/zh-hans/');
   const prefix = (isEn || isHans) ? '../' : '';
@@ -18,6 +18,7 @@
   const t = isEn ? navText.en : (isHans ? navText.hans : navText.zh);
 
   // 3. 生成 Header 的 HTML (包含样式和折叠菜单逻辑)
+  // 【核心修复】：语言切换的链接，现在会动态拼接当前的 page 名字
   const headerHTML = `
   <header class="custom-nav">
     <div class="nav-container">
@@ -33,9 +34,9 @@
         <a href="${prefix}contact.html" class="${page === 'contact.html' ? 'active' : ''}">${t.cont}</a>
         
         <div class="lang-switch">
-          <a href="${prefix}index.html" class="${!isEn && !isHans ? 'active' : ''}">${t.langB}</a>
-          <a href="${prefix}zh-hans/index.html" class="${isHans ? 'active' : ''}">${t.langS}</a>
-          <a href="${prefix}en/index.html" class="${isEn ? 'active' : ''}">EN</a>
+          <a href="${prefix}${page}" class="${!isEn && !isHans ? 'active' : ''}">${t.langB}</a>
+          <a href="${prefix}zh-hans/${page}" class="${isHans ? 'active' : ''}">${t.langS}</a>
+          <a href="${prefix}en/${page}" class="${isEn ? 'active' : ''}">EN</a>
         </div>
       </div>
     </div>
