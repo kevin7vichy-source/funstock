@@ -7,14 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: { navy: '#0B2545', navy2: '#13315C', teal: '#0E9F96', amber: '#F5A524', ink: '#1E293B', muted: '#64748B', bg: '#F6F8FB' },
-        fontFamily: { sans: ['Inter', 'sans-serif'] }
-      }
-    }
-  }
+  tailwind.config = { theme: { extend: { colors: { navy: '#0B2545', navy2: '#13315C', teal: '#0E9F96', amber: '#F5A524', ink: '#1E293B', muted: '#64748B', bg: '#F6F8FB' }, fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
 </script>
 <style>
   body { font-family: 'Inter', sans-serif; color: #1E293B; background: #fff; overflow-x: hidden; }
@@ -42,32 +35,11 @@
   }
 </style>
 </head>
-<body class="antialiased">
+<body class="antialiased flex flex-col min-h-screen">
 
-  <!-- Navigation -->
-  <header class="custom-nav">
-    <div class="nav-container">
-      <a href="index.html"><img src="../assets/logo-horizontal.svg" alt="FUNSTOCK" style="height: 40px;"></a>
-      <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
-      <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="services.html">Services</a>
-        <a href="products.html">Products</a>
-        <a href="ecommerce.html">E-commerce</a>
-        <a href="process.html">Process</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <div class="lang-switch">
-          <a href="../index.html">繁</a>
-          <a href="../zh-hans/index.html">简</a>
-          <a href="index.html" class="active">EN</a>
-        </div>
-      </div>
-    </div>
-  </header>
+  <div id="global-header"></div>
 
-  <main id="top">
-    <!-- Hero Section -->
+  <main id="top" class="flex-grow">
     <section class="hero-bg text-white overflow-hidden relative py-24">
       <div class="absolute top-0 right-0 w-96 h-96 bg-teal/20 rounded-full blur-3xl"></div>
       <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -117,7 +89,6 @@
       </div>
     </section>
 
-    <!-- Core Services -->
     <section class="py-24 bg-white">
       <div class="max-w-7xl mx-auto px-6">
         <div class="text-center mb-16 reveal">
@@ -145,17 +116,9 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-navy text-slate-400 py-12 border-t border-white/10 mt-12">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
-      <img src="../assets/logo-horizontal-white.svg" alt="FUNSTOCK" class="h-10">
-      <div class="text-center md:text-right space-y-1 text-xs">
-        <p>Flat 4(20), 4/F, Block D, Tuen Mun Industrial Centre, No.2 San Ping Circuit, Tuen Mun, New Territories.</p>
-        <p>© 2026 FUNSTOCK LIMITED. All rights reserved. · <a href="mailto:Funstockhk@gmail.com" class="text-teal-300 hover:text-white transition">Funstockhk@gmail.com</a></p>
-      </div>
-    </div>
-  </footer>
+  <div id="global-footer"></div>
 
+  <script src="../assets/js/global.js"></script>
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
