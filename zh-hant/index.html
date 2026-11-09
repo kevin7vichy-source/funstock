@@ -1,339 +1,174 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-HK">
+<html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>趣倉有限公司 FUNSTOCK LIMITED｜技術諮詢 · 進出口貿易 · 電子商務及營銷策劃</title>
-<meta name="description" content="趣倉有限公司（FUNSTOCK LIMITED）扎根香港，專注技術諮詢、進出口貿易、電子商務及營銷策劃，主營消費電子、五金建材、家用 LED 照明、柔性線路板 FPC。">
-<link rel="icon" href="../favicon.svg" type="image/svg+xml">
-<link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="../apple-touch-icon.png" sizes="180x180">
-<meta name="theme-color" content="#0B2545">
-<link rel="alternate" hreflang="en" href="https://funstock.org/en/">
-<link rel="alternate" hreflang="zh-Hant" href="https://funstock.org/zh-hant/">
-<link rel="alternate" hreflang="zh-Hans" href="https://funstock.org/">
-<link rel="alternate" hreflang="x-default" href="https://funstock.org/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>趣仓有限公司 FUNSTOCK LIMITED</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { 
+          navy: '#0B2545', navy2: '#13315C', teal: '#0E9F96', amber: '#F5A524', 
+          ink: '#1E293B', muted: '#64748B', bg: '#F6F8FB' 
+        },
+        fontFamily: { sans: ['Inter', 'Noto Sans SC', 'sans-serif'] }
+      }
+    }
+  }
+</script>
 <style>
-:root{--navy:#0B2545;--navy2:#13315C;--teal:#0E9F96;--amber:#F5A524;--ink:#1E293B;--muted:#64748B;--line:#E2E8F0;--bg:#F6F8FB;--r:14px}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang HK","PingFang TC","Microsoft JhengHei","Noto Sans CJK TC","Noto Sans TC",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;font-size:15px;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-img{display:block;max-width:100%}
-.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
-.ico{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-/* header */
-header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
-.hd{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
-.hd .logo img{height:40px;width:auto}
-nav{display:flex;gap:26px;font-size:14.5px;font-weight:600;color:#334155}
-nav a:hover{color:var(--teal)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:10px 20px;font-weight:700;font-size:14px;border:0;cursor:pointer;transition:.2s}
-.btn-p{background:var(--navy);color:#fff}.btn-p:hover{background:var(--teal)}
-.btn-o{border:1.5px solid rgba(255,255,255,.55);color:#fff}.btn-o:hover{background:rgba(255,255,255,.12)}
-.btn-a{background:var(--amber);color:var(--navy)}.btn-a:hover{filter:brightness(1.06)}
-/* hero */
-.hero{background:radial-gradient(1000px 420px at 85% -10%,rgba(14,159,150,.45),transparent 60%),linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;overflow:hidden}
-.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;padding-top:56px;padding-bottom:56px}
-.badge{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.02em;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);color:#CFFAF5}
-.badge i{width:7px;height:7px;border-radius:50%;background:var(--amber)}
-.hero h1{font-size:40px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin:18px 0 14px}
-.hero h1 span{color:#7EE2D8}
-.hero p.lead{font-size:16px;color:#CBD5E1;max-width:560px}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:32px;max-width:600px}
-.stats div{border-left:2px solid var(--teal);padding:2px 0 2px 12px}
-.stats b{display:block;font-size:17px}
-.stats span{font-size:12.5px;color:#94A3B8}
-.mosaic{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.mosaic a{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-.mosaic a:nth-child(2),.mosaic a:nth-child(4){transform:translateY(18px)}
-.mosaic img{width:100%;height:100%;object-fit:cover;transition:.4s}
-.mosaic a:hover img{transform:scale(1.05)}
-.mosaic span{position:absolute;left:10px;bottom:10px;font-size:12.5px;font-weight:700;background:rgba(11,37,69,.82);padding:4px 10px;border-radius:999px}
-/* sections */
-section{padding:64px 0}
-.alt{background:var(--bg)}
-.sh{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px;flex-wrap:wrap}
-.eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
-.sh h2{font-size:28px;line-height:1.25;font-weight:800;color:var(--navy);margin-top:4px}
-.sh p{color:var(--muted);max-width:480px;font-size:14.5px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.card{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:22px;transition:.25s}
-.card:hover{box-shadow:0 14px 34px rgba(15,23,42,.08);transform:translateY(-2px)}
-.svc .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--navy),var(--teal));color:#fff;margin-bottom:14px}
-.svc .ic .ico{width:22px;height:22px}
-.card h3{font-size:17.5px;color:var(--navy);margin-bottom:8px}
-.svc p{font-size:14px;color:var(--muted)}
-.svc ul{list-style:none;margin-top:14px;padding-top:14px;border-top:1px dashed var(--line);display:grid;gap:6px}
-.svc li{display:flex;gap:8px;align-items:center;font-size:13.5px;font-weight:600;color:#334155}
-.svc li .ico{width:16px;height:16px;color:var(--teal)}
-.prod{padding:0;overflow:hidden;display:flex;flex-direction:column}
-.prod .im{position:relative;aspect-ratio:3/2;overflow:hidden;background:#E2E8F0}
-.prod .im img{width:100%;height:100%;object-fit:cover;transition:.4s}
-.prod:hover .im img{transform:scale(1.05)}
-.tag{position:absolute;top:10px;left:10px;font-size:11.5px;font-weight:800;background:var(--amber);color:var(--navy);padding:3px 9px;border-radius:999px}
-.prod .bd{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
-.prod p{font-size:13.5px;color:var(--muted);flex:1}
-.prod .ft{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px;padding-top:12px;border-top:1px solid var(--line)}
-.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--teal)}
-.chip .ico{width:14px;height:14px}
-.ask{font-size:13px;font-weight:800;color:var(--navy);display:inline-flex;align-items:center;gap:4px}
-.ask:hover{color:var(--teal)}
-.ask .ico{width:14px;height:14px}
-/* about */
-.about{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:stretch}
-.about .txt p{color:#475569;font-size:15px;margin-top:12px}
-.about .txt p:first-of-type{margin-top:0}
-.vals{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
-.vals span{font-size:13px;font-weight:700;padding:6px 14px;border-radius:999px;background:#E6F6F5;color:#0B6F69}
-.addr{background:linear-gradient(160deg,var(--navy),var(--navy2));color:#fff;border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:16px}
-.addr h3{font-size:16px;display:flex;align-items:center;gap:8px}
-.addr h3 .ico{color:var(--amber)}
-.addr small{display:block;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:#7EE2D8;font-weight:700;margin-bottom:2px}
-.addr p{font-size:14px;color:#E2E8F0;line-height:1.55}
-.co{display:flex;align-items:center;gap:12px;margin-bottom:14px}.co b{display:block;color:var(--navy);font-size:17px;line-height:1.2}.co span{font-size:12px;letter-spacing:.12em;color:var(--teal);font-weight:700}
-/* contact */
-.contact{display:grid;grid-template-columns:.8fr 1.2fr;gap:28px}
-.ci{display:flex;flex-direction:column;gap:12px}
-.ci .row{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:16px}
-.ci .row .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;background:#E6F6F5;color:var(--teal);flex:none}
-.ci small{display:block;font-size:12px;color:var(--muted);font-weight:600}
-.ci b{font-size:15px;color:var(--navy);word-break:break-all}
-form{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
-form .full{grid-column:1/-1}
-label{display:block;font-size:13px;font-weight:700;color:#334155;margin-bottom:6px}
-label em{color:#DC2626;font-style:normal}
-input,select,textarea{width:100%;font:inherit;font-size:14px;color:var(--ink);background:#F8FAFC;border:1px solid #CBD5E1;border-radius:10px;padding:10px 12px;outline:none;transition:.2s}
-input:focus,select:focus,textarea:focus{border-color:var(--teal);background:#fff;box-shadow:0 0 0 3px rgba(14,159,150,.15)}
-textarea{resize:vertical;min-height:110px}
-.fnote{font-size:12.5px;color:var(--muted);align-self:center}
-form .btn{justify-self:start}
-/* footer */
-footer{background:var(--navy);color:#94A3B8;font-size:13px;padding:32px 0}
-footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-footer img{height:38px;width:auto}
-footer .fi{display:flex;flex-direction:column;gap:4px;text-align:right}
-footer a{color:#7EE2D8}
-.lang{display:flex;gap:4px;font-size:13px;font-weight:700;color:#64748B;margin-left:auto}.lang a{padding:3px 6px;border-radius:6px}.lang a:hover{color:var(--teal)}.lang a[aria-current]{color:#fff;background:var(--navy)}
-/* responsive */
-@media (max-width:1000px){
- .hero .wrap{grid-template-columns:1fr;gap:32px;padding-top:40px;padding-bottom:48px}
- .grid4{grid-template-columns:repeat(2,1fr)}
- .grid3{grid-template-columns:1fr}
- .about,.contact{grid-template-columns:1fr}
-}
-@media (max-width:760px){
- body{font-size:14.5px}
- .hd{height:auto;flex-wrap:wrap;padding-top:10px;padding-bottom:0;gap:8px}
- .hd .logo img{height:34px}
- .hd .btn{padding:8px 14px;font-size:13px}
- nav{order:3;width:100%;gap:0;justify-content:space-between;overflow-x:auto;font-size:13.5px;border-top:1px solid var(--line)}
- nav a{padding:9px 4px;white-space:nowrap}
- html{scroll-padding-top:104px}
- .hero h1{font-size:28px}
- .hero p.lead{font-size:14.5px}
- .stats{grid-template-columns:repeat(2,1fr);gap:14px 10px;margin-top:26px}
- .mosaic{gap:8px}.mosaic a:nth-child(2),.mosaic a:nth-child(4){transform:translateY(10px)}
- section{padding:44px 0}
- .sh{margin-bottom:20px}.sh h2{font-size:23px}
- .grid4{grid-template-columns:1fr 1fr;gap:12px}
- .prod .bd{padding:12px;gap:6px}
- .prod h3{font-size:15px}
- .prod p{font-size:12.5px;line-height:1.5}
- .prod .ft{flex-direction:column;align-items:flex-start;gap:6px;padding-top:8px}
- .card{padding:18px}.prod{padding:0}
- .svc{display:grid;grid-template-columns:42px 1fr;column-gap:12px}.svc .ic{margin:0}.svc h3{align-self:center;margin:0}.svc p,.svc ul{grid-column:1/-1}.svc p{margin-top:10px}.svc ul{margin-top:12px;padding-top:12px}
- .badge{font-size:11.5px}
- form{grid-template-columns:1fr;padding:18px}
- footer .wrap{flex-direction:column;align-items:flex-start}
- footer .fi{text-align:left}
-}
+  body { font-family: 'Inter', 'Noto Sans SC', sans-serif; color: #1E293B; background: #fff; overflow-x: hidden; }
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+  .img-hover-zoom img { transition: transform 0.6s ease; }
+  .img-hover-zoom:hover img { transform: scale(1.08); }
+  .hero-bg { background: radial-gradient(1000px 420px at 85% -10%, rgba(14,159,150,.45), transparent 60%), linear-gradient(135deg, #0B2545 0%, #13315C 100%); }
+  
+  /* 导航栏 */
+  .custom-nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #E2E8F0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+  .nav-container { max-width: 1280px; margin: 0 auto; padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 700; }
+  .nav-links a { color: #1E293B; text-decoration: none; transition: all 0.3s; }
+  .nav-links a:hover { color: #0E9F96; }
+  .nav-links a.active { color: #0E9F96; border-bottom: 2px solid #0E9F96; padding-bottom: 4px; }
+  .lang-switch { display: flex; align-items: center; gap: 8px; border-left: 1px solid #ccc; padding-left: 16px; margin-left: 8px; font-size: 12px; }
+  .lang-switch a { color: #64748B; }
+  .lang-switch a.active { color: #0E9F96; font-weight: bold; }
+  .menu-toggle { display: none; cursor: pointer; font-size: 28px; color: #0B2545; background: none; border: none; }
+  @media (max-width: 900px) {
+    .menu-toggle { display: block; }
+    .nav-links { display: none; position: absolute; top: 70px; left: 0; right: 0; background: rgba(255, 255, 255, 0.98); flex-direction: column; padding: 20px; gap: 16px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-bottom: 1px solid #ddd; }
+    .nav-links.show { display: flex; }
+    .lang-switch { border-left: none; padding-left: 0; margin-left: 0; border-top: 1px solid #eee; padding-top: 16px; justify-content: flex-start; }
+  }
 </style>
 </head>
-<body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
- <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></symbol>
- <symbol id="i-ship" viewBox="0 0 24 24"><path d="M2 20c2 1 4 1 6 0s4-1 6 0 4 1 6 0"/><path d="M4 17l-1-5h18l-2 5"/><path d="M6 12V7h8v5M14 9h3l2 3"/></symbol>
- <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-6"/><path d="M16 8h4v4"/></symbol>
- <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></symbol>
- <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
- <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
- <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
- <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
- <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
- <symbol id="i-send" viewBox="0 0 24 24"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4z"/></symbol>
-</svg>
+<body class="antialiased">
 
-<header>
- <div class="wrap hd">
-  <a class="logo" href="#top" aria-label="趣倉有限公司 FUNSTOCK LIMITED"><img src="../assets/logo-horizontal.svg" alt="趣倉 FUNSTOCK" width="187" height="64"></a>
-  <nav aria-label="主導航">
-   <a href="#services">核心業務</a><a href="#products">主營產品</a><a href="#about">關於我們</a><a href="#contact">聯絡我們</a>
-  </nav>
-  <div class="lang" aria-label="Language"><a href="../en/" hreflang="en" lang="en">EN</a><a href="../zh-hant/" hreflang="zh-Hant" lang="zh-Hant" aria-current="page">繁</a><a href="../" hreflang="zh-Hans" lang="zh-Hans">简</a></div>
-  <a class="btn btn-p" href="#contact">業務諮詢</a>
- </div>
-</header>
+  <!-- 导航栏 -->
+  <header class="custom-nav">
+    <div class="nav-container">
+      <a href="index.html"><img src="assets/logo-horizontal.svg" alt="趣仓 FUNSTOCK" style="height: 40px;"></a>
+      <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('show')">☰</button>
+      <div class="nav-links">
+        <a href="index.html" class="active">首页</a>
+        <a href="services.html">核心服务</a>
+        <a href="products.html">产品中心</a>
+        <a href="ecommerce.html">跨境电商</a>
+        <a href="process.html">服务流程</a>
+        <a href="about.html">关于趣仓</a>
+        <a href="contact.html">联系我们</a>
+        <div class="lang-switch">
+          <a href="../index.html">繁</a>
+          <a href="index.html" class="active">简</a>
+          <a href="../en/index.html">EN</a>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<main id="top">
-<section class="hero">
- <div class="wrap">
-  <div>
-   <span class="badge"><i></i>連接全球智慧供應鏈 · 趣倉有限公司 FUNSTOCK LIMITED</span>
-   <h1>Empowering Global Cross-Border Trade <span>&amp; Intelligent Tech Solutions</span></h1>
-   <p class="lead">扎根香港，放眼全球。我們專注於技術諮詢、進出口貿易、跨境電子商務及營銷策劃，為您構建高效、可靠的國際貿易橋樑。</p>
-   <div class="cta">
-    <a class="btn btn-a" href="#products">探索主營產品 <svg class="ico"><use href="#i-arrow"/></svg></a>
-    <a class="btn btn-o" href="#contact">聯絡商務洽談</a>
-   </div>
-   <div class="stats">
-    <div><b>4 大品類</b><span>主營產品矩陣</span></div>
-    <div><b>全球化</b><span>進出口貿易網絡</span></div>
-    <div><b>專業諮詢</b><span>前沿技術與營銷策劃</span></div>
-    <div><b>香港總部</b><span>屯門工業中心</span></div>
-   </div>
-  </div>
-  <div class="mosaic" aria-label="主營產品">
-   <a href="#products"><img src="../assets/img/electronics.webp" alt="消費電子產品" width="960" height="640"><span>消費電子</span></a>
-   <a href="#products"><img src="../assets/img/hardware.webp" alt="五金建材產品" width="960" height="640"><span>五金建材</span></a>
-   <a href="#products"><img src="../assets/img/led-lighting.webp" alt="家用 LED 照明" width="960" height="640"><span>家用 LED 照明</span></a>
-   <a href="#products"><img src="../assets/img/fpc.webp" alt="柔性線路板 FPC" width="960" height="640"><span>柔性線路板 FPC</span></a>
-  </div>
- </div>
-</section>
+  <main id="top">
+    <!-- 首屏 Hero 区 -->
+    <section class="hero-bg text-white overflow-hidden relative py-24">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-teal/20 rounded-full blur-3xl"></div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal active">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 text-xs font-semibold text-teal-200 mb-6">
+            <span class="w-2 h-2 rounded-full bg-amber animate-pulse"></span>
+            连接全球智慧供应链 · 趣仓有限公司
+          </div>
+          <h1 class="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
+            赋能中国智造出海<br>
+            <span class="text-teal-300">一站式跨境贸易与电商</span>
+          </h1>
+          <p class="text-lg text-slate-300 mb-10 leading-relaxed">
+            扎根香港，专注技术开发、消费电子与五金门锁进出口，以及 Amazon/Shopee/TikTok 跨境电商代运营。
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="products.html" class="px-8 py-3.5 bg-amber hover:bg-amber-400 text-navy font-bold rounded-full transition shadow-lg flex items-center gap-2 transform hover:-translate-y-1">
+              探索主营产品 →
+            </a>
+            <a href="contact.html" class="px-8 py-3.5 border border-white/50 hover:bg-white/10 text-white font-bold rounded-full transition">
+              联系商务洽谈
+            </a>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 reveal" style="transition-delay: 0.2s;">
+          <a href="products.html" class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl img-hover-zoom">
+            <img src="assets/img/electronics.webp" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <span class="absolute bottom-4 left-4 font-bold text-sm">消费电子</span>
+          </a>
+          <a href="products.html" class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl img-hover-zoom translate-y-8">
+            <img src="assets/img/hardware.webp" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <span class="absolute bottom-4 left-4 font-bold text-sm">五金门锁</span>
+          </a>
+          <a href="products.html" class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl img-hover-zoom -translate-y-4">
+            <img src="assets/img/fpc.webp" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <span class="absolute bottom-4 left-4 font-bold text-sm">柔性线路板</span>
+          </a>
+          <a href="ecommerce.html" class="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl img-hover-zoom translate-y-4">
+            <img src="assets/img/ecommerce.webp" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            <span class="absolute bottom-4 left-4 font-bold text-sm">跨境电商</span>
+          </a>
+        </div>
+      </div>
+    </section>
 
-<section id="services">
- <div class="wrap">
-  <div class="sh">
-   <div><div class="eyebrow">Core Services</div><h2>全方位業務佈局</h2></div>
-   <p>從技術諮詢到全球供應鏈落地及品牌營銷，一站式商業服務。</p>
-  </div>
-  <div class="grid3">
-   <article class="card svc">
-    <div class="ic"><svg class="ico"><use href="#i-cpu"/></svg></div>
-    <h3>技術諮詢服務</h3>
-    <p>為企業提供消費電子、智能硬件、LED 照明系統及柔性線路板製造工藝的專業技術諮詢、架構設計與升級優化方案。</p>
-    <ul><li><svg class="ico"><use href="#i-check"/></svg>電子產品技術方案評審</li><li><svg class="ico"><use href="#i-check"/></svg>FPC 柔性板工藝諮詢</li><li><svg class="ico"><use href="#i-check"/></svg>智能化升級指導</li></ul>
-   </article>
-   <article class="card svc">
-    <div class="ic"><svg class="ico"><use href="#i-ship"/></svg></div>
-    <h3>進出口貿易</h3>
-    <p>連接中國優質製造產能與全球市場，專注消費電子、五金建材及照明產品的國際雙向通關、物流集散與合規供應鏈服務。</p>
-    <ul><li><svg class="ico"><use href="#i-check"/></svg>全球供應鏈資源整合</li><li><svg class="ico"><use href="#i-check"/></svg>國際貿易合規與報關</li><li><svg class="ico"><use href="#i-check"/></svg>優質中國智造出海</li></ul>
-   </article>
-   <article class="card svc">
-    <div class="ic"><svg class="ico"><use href="#i-chart"/></svg></div>
-    <h3>電子商務及營銷策劃</h3>
-    <p>多渠道數字營銷與跨境電商運營，以精準市場定位、數據驅動的營銷策劃與全案品牌包裝，助力產品開拓海外市場。</p>
-    <ul><li><svg class="ico"><use href="#i-check"/></svg>跨境電商獨立站與平台運營</li><li><svg class="ico"><use href="#i-check"/></svg>海外數字營銷與品牌策劃</li><li><svg class="ico"><use href="#i-check"/></svg>大數據市場洞察分析</li></ul>
-   </article>
-  </div>
- </div>
-</section>
+    <!-- 核心业务概览 -->
+    <section class="py-24 bg-white">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+          <div class="text-teal font-bold text-sm tracking-widest uppercase mb-2">Core Services</div>
+          <h2 class="text-3xl font-extrabold text-navy">全方位出海服务</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-bg rounded-2xl p-8 hover:shadow-xl transition transform hover:-translate-y-2 reveal">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-navy to-teal text-white flex items-center justify-center text-2xl mb-6">💻</div>
+            <h3 class="text-xl font-bold text-navy mb-3">技术咨询与开发</h3>
+            <p class="text-sm text-muted">为企业提供消费电子、智能硬件及柔性线路板的技术方案与定制开发。</p>
+          </div>
+          <div class="bg-bg rounded-2xl p-8 hover:shadow-xl transition transform hover:-translate-y-2 reveal" style="transition-delay: 0.1s;">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-navy to-teal text-white flex items-center justify-center text-2xl mb-6">🚢</div>
+            <h3 class="text-xl font-bold text-navy mb-3">进出口贸易</h3>
+            <p class="text-sm text-muted">深耕消费电子与五金门锁类目的国际贸易，提供高效合规的供应链服务。</p>
+          </div>
+          <div class="bg-bg rounded-2xl p-8 hover:shadow-xl transition transform hover:-translate-y-2 reveal" style="transition-delay: 0.2s;">
+            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-navy to-teal text-white flex items-center justify-center text-2xl mb-6">🛒</div>
+            <h3 class="text-xl font-bold text-navy mb-3">跨境电商代运营</h3>
+            <p class="text-sm text-muted">专业 Amazon、Shopee、TikTok 店铺搭建与全案营销运营。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<section id="products" class="alt">
- <div class="wrap">
-  <div class="sh">
-   <div><div class="eyebrow">Featured Products</div><h2>主營產品</h2></div>
-   <p>精選優質中國智造產品，滿足全球客戶對品質、性能與性價比的多樣化需求。</p>
-  </div>
-  <div class="grid4">
-   <article class="card prod">
-    <div class="im"><img src="../assets/img/electronics.webp" alt="消費電子產品" loading="lazy" width="960" height="640"><span class="tag">智造精品</span></div>
-    <div class="bd"><h3>消費電子產品</h3><p>涵蓋智能穿戴、數碼配件、創新音頻與便攜智能終端。</p>
-     <div class="ft"><span class="chip"><svg class="ico"><use href="#i-shield"/></svg>嚴格質檢認證</span><a class="ask" href="#contact" data-subject="中國製造消費電子產品">詢價諮詢<svg class="ico"><use href="#i-arrow"/></svg></a></div></div>
-   </article>
-   <article class="card prod">
-    <div class="im"><img src="../assets/img/hardware.webp" alt="五金建材產品" loading="lazy" width="960" height="640"><span class="tag">工業標準</span></div>
-    <div class="bd"><h3>五金建材產品</h3><p>高端合金構件、精密五金配件與環保建築材料，適用於現代基建、商業地產與精裝工程。</p>
-     <div class="ft"><span class="chip"><svg class="ico"><use href="#i-shield"/></svg>國際標準供應</span><a class="ask" href="#contact" data-subject="五金建材產品">詢價諮詢<svg class="ico"><use href="#i-arrow"/></svg></a></div></div>
-   </article>
-   <article class="card prod">
-    <div class="im"><img src="../assets/img/led-lighting.webp" alt="家用 LED 照明" loading="lazy" width="960" height="640"><span class="tag">節能環保</span></div>
-    <div class="bd"><h3>家用 LED 照明</h3><p>智能調光燈具、高光效 LED 球泡、創意家居照明，兼顧美學設計與長壽命節能。</p>
-     <div class="ft"><span class="chip"><svg class="ico"><use href="#i-shield"/></svg>CE/RoHS 認證</span><a class="ask" href="#contact" data-subject="家用LED照明">詢價諮詢<svg class="ico"><use href="#i-arrow"/></svg></a></div></div>
-   </article>
-   <article class="card prod">
-    <div class="im"><img src="../assets/img/fpc.webp" alt="柔性線路板 FPC" loading="lazy" width="960" height="640"><span class="tag">高精尖端</span></div>
-    <div class="bd"><h3>柔性線路板 FPC</h3><p>高密度單面、雙面及多層柔性印製電路板，應用於電子元器件、精密儀器與柔性顯示模組。</p>
-     <div class="ft"><span class="chip"><svg class="ico"><use href="#i-shield"/></svg>定製化高精度</span><a class="ask" href="#contact" data-subject="柔性線路板產品 (FPC)">詢價諮詢<svg class="ico"><use href="#i-arrow"/></svg></a></div></div>
-   </article>
-  </div>
- </div>
-</section>
+  <!-- 底部 -->
+  <footer class="bg-navy text-slate-400 py-12 border-t border-white/10 mt-12">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6 text-sm">
+      <img src="assets/logo-horizontal-white.svg" alt="趣仓 FUNSTOCK" class="h-10">
+      <div class="text-center md:text-right space-y-1 text-xs">
+        <p>Flat 4(20), 4/F, Block D, Tuen Mun Industrial Centre, No.2 San Ping Circuit, Tuen Mun, New Territories.</p>
+        <p>© 2026 趣仓有限公司 FUNSTOCK LIMITED. All rights reserved. · <a href="mailto:Funstockhk@gmail.com" class="text-teal-300 hover:text-white transition">Funstockhk@gmail.com</a></p>
+      </div>
+    </div>
+  </footer>
 
-<section id="about">
- <div class="wrap">
-  <div class="sh"><div><div class="eyebrow">About Funstock</div><h2>立足香港，賦能全球貿易新生態</h2></div></div>
-  <div class="about">
-   <div class="txt">
-    <div class="co"><img src="../assets/logo-mark.svg" alt="" width="44" height="44"><div><b>趣倉有限公司</b><span>FUNSTOCK LIMITED</span></div></div>
-    <p>趣倉有限公司（FUNSTOCK LIMITED）是一家充滿活力與創新精神的國際化貿易與技術服務公司。總部位於香港新界屯門工業中心，依託香港國際物流與金融樞紐優勢，高效整合大中華區製造供應鏈。</p>
-    <p>公司業務橫跨技術諮詢、國際進出口貿易、跨境電子商務及營銷策劃，致力於幫助全球客戶發掘中國優質智造好物，提供從產品甄選、技術支持到數字化營銷的端到端服務。</p>
-    <div class="vals"><span>誠信</span><span>專業</span><span>共贏</span></div>
-   </div>
-   <div class="addr">
-    <h3><svg class="ico"><use href="#i-pin"/></svg>公司註冊與辦公地址</h3>
-    <div><small>Registered Address</small><p>Flat 4(20), 4/F, Block D, Tuen Mun Industrial Centre, No.2 San Ping Circuit, Tuen Mun, New Territories.</p></div>
-    <div><small>中文地址</small><p>香港新界屯門新平街2號屯門工業中心D座4樓4(20)室</p></div>
-   </div>
-  </div>
- </div>
-</section>
-
-<section id="contact" class="alt">
- <div class="wrap">
-  <div class="sh">
-   <div><div class="eyebrow">Contact Us</div><h2>開啓商務合作與諮詢</h2></div>
-   <p>技術諮詢、進出口合作或電商營銷策劃，歡迎隨時聯絡我們。</p>
-  </div>
-  <div class="contact">
-   <div class="ci">
-    <div class="row"><div class="ic"><svg class="ico"><use href="#i-mail"/></svg></div><div><small>電子郵箱</small><b><a href="mailto:Funstockhk@gmail.com">Funstockhk@gmail.com</a></b></div></div>
-    <div class="row"><div class="ic"><svg class="ico"><use href="#i-clock"/></svg></div><div><small>營業時間</small><b>週一至週五 09:00 - 18:00 (GMT+8)</b></div></div>
-    <div class="row"><div class="ic"><svg class="ico"><use href="#i-pin"/></svg></div><div><small>辦公地址</small><b>香港新界屯門工業中心D座4樓4(20)室</b></div></div>
-   </div>
-   <form id="inq" action="mailto:Funstockhk@gmail.com" method="post" enctype="text/plain">
-    <div><label for="f-name">您的姓名 / 稱呼 <em>*</em></label><input id="f-name" name="name" required autocomplete="name"></div>
-    <div><label for="f-email">電子郵箱 <em>*</em></label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
-    <div><label for="f-subject">業務類型 / 意向產品 <em>*</em></label>
-     <select id="f-subject" name="subject" required>
-      <option>技術諮詢服務</option><option>進出口貿易合作</option><option>電子商務及營銷策劃</option><option>中國製造消費電子產品</option><option>五金建材產品</option><option>家用LED照明</option><option>柔性線路板產品 (FPC)</option><option>其他綜合業務諮詢</option>
-     </select></div>
-    <div><label for="f-phone">聯絡電話 / WhatsApp / 微信</label><input id="f-phone" name="phone" autocomplete="tel"></div>
-    <div class="full"><label for="f-msg">詳細需求説明 <em>*</em></label><textarea id="f-msg" name="message" required placeholder="產品型號、數量、目標市場等"></textarea></div>
-    <button class="btn btn-p" type="submit"><svg class="ico"><use href="#i-send"/></svg>發送諮詢郵件</button>
-    <span class="fnote">點擊後將打開您的郵件應用，內容已自動填好。</span>
-   </form>
-  </div>
- </div>
-</section>
-</main>
-
-<footer>
- <div class="wrap">
-  <img src="../assets/logo-horizontal-white.svg" alt="趣倉 FUNSTOCK" width="187" height="64">
-  <div class="fi">
-   <span>Flat 4(20), 4/F, Block D, Tuen Mun Industrial Centre, No.2 San Ping Circuit, Tuen Mun, New Territories.</span>
-   <span>© 2026 趣倉有限公司 FUNSTOCK LIMITED. All rights reserved. · <a href="mailto:Funstockhk@gmail.com">Funstockhk@gmail.com</a></span>
-  </div>
- </div>
-</footer>
-
-<script>
-(function(){
- var f=document.getElementById('inq'),s=document.getElementById('f-subject');
- document.querySelectorAll('[data-subject]').forEach(function(a){a.addEventListener('click',function(){s.value=a.getAttribute('data-subject');});});
- f.addEventListener('submit',function(e){
-  e.preventDefault();
-  var v=function(id){return document.getElementById(id).value.trim();};
-  var subj='【官網諮詢】'+v('f-subject')+' - '+v('f-name');
-  var body='姓名：'+v('f-name')+'\n郵箱：'+v('f-email')+'\n電話/WhatsApp/微信：'+(v('f-phone')||'未填寫')+'\n業務類型：'+v('f-subject')+'\n\n諮詢內容：\n'+v('f-msg');
-  window.location.href='mailto:Funstockhk@gmail.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);
- });
-})();
-</script>
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el) => { observer.observe(el); });
+  </script>
 </body>
 </html>
