@@ -1,1 +1,1 @@
-
+="window.FUNSTOCK_DATA = { updatedAt: '" & TEXT(NOW(),"yyyy-mm-dd hh:mm") & "', achieveRate: '" & TEXT('01_经营与提醒_M1'!H12/'01_经营与提醒_M1'!G12,"0.0%") & "', pendingTasks: " & COUNTIF('01_经营与提醒_M1'!I2:I20,"<>已完成") & ", totalAssets: '" & TEXT('03_四套账报表_M2'!B17,"#,##0") & "', endingCash: '" & TEXT('03_四套账报表_M2'!B14,"#,##0") & "', netProfit: '" & TEXT('03_四套账报表_M2'!B12,"#,##0") & "', evidenceRate: '" & TEXT(COUNTIF('04_续签证据库_M3'!G2:G50,"已核验")/COUNTA('04_续签证据库_M3'!A2:A50),"0.0%") & "' };"
