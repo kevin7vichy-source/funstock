@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUNSTOCK & HARTHELM · 双端安全收件与工作台门户</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { navy: '#0B2545', teal: '#0E9F96', amber: '#F5A524', darkBg: '#090D16' },
+            fontFamily: { sans: ['Inter', 'Noto Sans SC', 'sans-serif'] }
+          }
+        }
+      }
+    </script>
+    <style>
+      .glass-card { background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    </style>
+</head>
+<body class="bg-darkBg text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between p-4 md:p-8 selection:bg-teal selection:text-white">
+    <div class="max-w-3xl mx-auto w-full space-y-6">
+        
+        <!-- Header -->
+        <div class="text-center space-y-2 border-b border-slate-800 pb-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal/10 border border-teal/25 text-xs text-teal-300 font-mono">
+                <i class="fa-solid fa-shield-halved"></i> <span>TLS 256位加密安全传输通道</span>
+            </div>
+            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">FUNSTOCK LIMITED · 数字化业务门户</h1>
+            <p class="text-xs md:text-sm text-slate-400">请选择您的身份通道登录并提交相关凭证或报告</p>
+        </div>
+
+        <!-- Role Switcher Tabs -->
+        <div class="flex rounded-xl bg-slate-900 p-1.5 border border-slate-800">
+            <button onclick="switchPortal('client')" id="btn-client" class="flex-1 py-2.5 rounded-lg text-sm font-bold bg-teal text-white transition shadow-md">
+                <i class="fa-solid fa-user-lock mr-2"></i>签约客户上传通道
+            </button>
+            <button onclick="switchPortal('advisor')" id="btn-advisor" class="flex-1 py-2.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition">
+                <i class="fa-solid fa-user-tie mr-2"></i>顾问员工工作台
+            </button>
+        </div>
+
+        <!-- ==================== 客户端表单 ==================== -->
+        <div id="portal-client" class="glass-card rounded-2xl p-6 md:p-8 space-y-6">
+            <h2 class="text-lg font-bold flex items-center gap-2 text-teal-300">
+                <i class="fa-solid fa-file-arrow-up"></i> 客户固定凭证与敏感资料安全上传
+            </h2>
+            
+            <form id="form-client" onsubmit="handleClientSubmit(event)" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">固定客户账号 (Client Code)</label>
+                        <input type="text" id="c-code" required placeholder="例如：FS-01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">专属访问密码 (16位)</label>
+                        <input type="password" id="c-pwd" required placeholder="请输入签约时下发的独立密码" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">所属运营月份</label>
+                        <input type="month" id="c-month" required value="2026-11" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">凭证或资料分类</label>
+                        <select id="c-category" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal">
+                            <option value="1_实体办公运作">1. 银行月结单 / 租约 / 水电账单</option>
+                            <option value="2_真实贸易闭环">2. 贸易合同 / 发票 / 提单 / 水单</option>
+                            <option value="3_本地雇佣贡献">3. 员工薪金水单 / 强积金 MPF 结算书</option>
+                            <option value="4_法定审计合规">4. 商业登记证 BR / 审计税表</option>
+                            <option value="5_个人敏感资料">5. 董事/申请人身份证件与个人税单</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">业务摘要与说明备注</label>
+                    <textarea id="c-memo" rows="2" placeholder="请简述上传文件的具体内容或补充说明..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal"></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">上传文件 (支持手机拍照、PDF、图片)</label>
+                    <input type="file" id="c-file" required class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-teal file:text-white hover:file:bg-teal-600 cursor-pointer bg-slate-900 border border-slate-700 rounded-xl">
+                </div>
+
+                <!-- PICS 隐私声明强制勾选框 -->
+                <div class="bg-slate-900/90 border border-slate-800 p-4 rounded-xl space-y-2">
+                    <div class="text-xs font-bold text-teal-400 flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-contract"></i> 收集个人资料声明 (PICS) 与私隐政策告知
+                    </div>
+                    <p class="text-[11px] text-slate-400 leading-relaxed max-h-24 overflow-y-auto pr-2">
+                        根据香港《个人资料（私隐）条例》（PDPO），您所提交的一切公司及个人敏感资料，将仅用于 FUNSTOCK LIMITED 香港实体日常财务合规、执业会计师（CPA）法定审计准备及香港身份续签评估。所有文件经 TLS 256 位加密直接存入受控的 Google Drive 正本库（只增不删），绝不对外公开。您享有查阅及更正个人资料之权利。
+                    </p>
+                    <label class="flex items-start gap-2.5 pt-2 cursor-pointer select-none">
+                        <input type="checkbox" id="c-pics" required class="mt-0.5 w-4 h-4 rounded border-slate-700 text-teal focus:ring-teal bg-slate-900">
+                        <span class="text-xs font-medium text-slate-200">本人已完整阅读并同意上述《收集个人资料声明 (PICS)》，确认所提交资料真实有效。</span>
+                    </label>
+                </div>
+
+                <button type="submit" id="btn-submit-client" class="w-full py-3.5 bg-gradient-to-r from-teal to-indigo-600 hover:opacity-95 text-white font-bold rounded-xl transition shadow-lg shadow-teal/25 text-sm">
+                    确认签署 PICS 并安全上传凭证
+                </button>
+            </form>
+        </div>
+
+        <!-- ==================== 顾问端表单 ==================== -->
+        <div id="portal-advisor" class="glass-card rounded-2xl p-6 md:p-8 space-y-6 hidden">
+            <h2 class="text-lg font-bold flex items-center gap-2 text-indigo-400">
+                <i class="fa-solid fa-laptop-code"></i> 顾问工作台：提交运营报告与寄语
+            </h2>
+            
+            <form id="form-advisor" onsubmit="handleAdvisorSubmit(event)" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">顾问员工工号</label>
+                        <input type="text" id="a-id" required placeholder="例如：ADV-01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">内部授权 Token</label>
+                        <input type="password" id="a-token" required placeholder="请输入授权密钥" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">目标客户代号</label>
+                    <input type="text" id="a-client" required placeholder="例如：FS-01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">提交内容类型</label>
+                    <select id="a-type" onchange="toggleAdvisorFields()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                        <option value="advisor_note">更新【每月专属顾问寄语/诊断建议】</option>
+                        <option value="consulting_report">上传【公司运营咨询报告 / 续签发展计划书 (PDF)】</option>
+                    </select>
+                </div>
+
+                <div id="field-note-container">
+                    <label class="block text-xs font-semibold text-slate-300 mb-1">顾问寄语正文 (将实时同步至客户加密看板)</label>
+                    <textarea id="a-notetext" rows="4" placeholder="请输入本月针对该客户的经营诊断与合规提醒..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500"></textarea>
+                </div>
+
+                <div id="field-file-container" class="hidden space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">报告标题名称</label>
+                        <input type="text" id="a-reptitle" placeholder="例如：2026年度商业实质运营总结报告" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 mb-1">上传正式 PDF 报告文件</label>
+                        <input type="file" id="a-file" class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer bg-slate-900 border border-slate-700 rounded-xl">
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition shadow-lg shadow-indigo-600/25 text-sm">
+                    提交顾问报告/寄语并同步看板
+                </button>
+            </form>
+        </div>
+
+    </div>
+
+    <footer class="text-center text-xs text-slate-500 py-6 mt-12 border-t border-slate-900">
+        <p>&copy; 2026 HARTHELM & FUNSTOCK LIMITED. All Rights Reserved. | 坚持真实经营，赋能海外身份落地。</p>
+    </footer>
+
+    <script>
+        const GAS_WEB_APP_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE"; // 替换为您的 GAS 部署网址
+
+        function switchPortal(role) {
+            if (role === 'client') {
+                document.getElementById('portal-client').classList.remove('hidden');
+                document.getElementById('portal-advisor').classList.add('hidden');
+                document.getElementById('btn-client').className = "flex-1 py-2.5 rounded-lg text-sm font-bold bg-teal text-white transition shadow-md";
+                document.getElementById('btn-advisor').className = "flex-1 py-2.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition";
+            } else {
+                document.getElementById('portal-client').classList.add('hidden');
+                document.getElementById('portal-advisor').classList.remove('hidden');
+                document.getElementById('btn-advisor').className = "flex-1 py-2.5 rounded-lg text-sm font-bold bg-indigo-600 text-white transition shadow-md";
+                document.getElementById('btn-client').className = "flex-1 py-2.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition";
+            }
+        }
+
+        function toggleAdvisorFields() {
+            const type = document.getElementById('a-type').value;
+            if (type === 'advisor_note') {
+                document.getElementById('field-note-container').classList.remove('hidden');
+                document.getElementById('field-file-container').classList.add('hidden');
+            } else {
+                document.getElementById('field-note-container').classList.add('hidden');
+                document.getElementById('field-file-container').classList.remove('hidden');
+            }
+        }
+
+        // 文件转 Base64 辅助函数
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        async function handleClientSubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-client');
+            btn.innerText = "正在加密传输并通过 PICS 存证...";
+            btn.disabled = true;
+
+            try {
+                const fileInput = document.getElementById('c-file');
+                let base64Data = "";
+                let fileName = "";
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    fileName = file.name;
+                    base64Data = await readFileAsBase64(file);
+                }
+
+                const payload = {
+                    action: "client_upload",
+                    clientCode: document.getElementById('c-code').value,
+                    password: document.getElementById('c-pwd').value,
+                    month: document.getElementById('c-month').value,
+                    category: document.getElementById('c-category').value,
+                    memo: document.getElementById('c-memo').value,
+                    picsAgreed: document.getElementById('c-pics').checked,
+                    picsVersion: "PICS-v4-2026",
+                    timestamp: new Date().toISOString(),
+                    fileName: fileName,
+                    fileData: base64Data
+                };
+
+                const response = await fetch(GAS_WEB_APP_URL, {
+                    method: "POST",
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+
+                if (result.status === "success") {
+                    alert("✅ 凭证上传成功！已自动入库至 Google Drive 并完成 PICS 授权存证。");
+                    document.getElementById('form-client').reset();
+                } else {
+                    alert("❌ 上传失败: " + result.message);
+                }
+            } catch (err) {
+                alert("❌ 网络或脚本通信异常: " + err);
+            } finally {
+                btn.innerText = "确认签署 PICS 并安全上传凭证";
+                btn.disabled = false;
+            }
+        }
+
+        async function handleAdvisorSubmit(e) {
+            e.preventDefault();
+            alert("正在提交顾问寄语/报告并同步至客户看板...");
+            // 顾问端提交逻辑与客户端类似，调用 action: "advisor_submit"
+        }
+    </script>
+</body>
+</html>
