@@ -19,6 +19,9 @@
     <style>
       .glass-card { background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
     </style>
+    
+    <!-- 🟢 引入动态业务数据包 (与 data.js 强联动) -->
+    <script src="./data.js"></script>
 </head>
 <body class="bg-darkBg text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between p-6 md:p-12 selection:bg-teal selection:text-white">
     <div class="max-w-4xl mx-auto w-full space-y-8">
@@ -33,25 +36,25 @@
             </div>
             <div class="text-right">
                 <span class="text-xs bg-teal/10 text-teal-300 px-3.5 py-1.5 rounded-full border border-teal/25 font-semibold">HARTHELM 专属交付系统</span>
-                <p class="text-xs text-slate-500 mt-2 font-mono">下发日期：2026-11-01</p>
+                <p class="text-xs text-slate-500 mt-2 font-mono" id="update-time">同步中...</p>
             </div>
         </div>
 
-        <!-- Summary Cards -->
+        <!-- Summary Cards (绑定动态 ID) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="glass-card p-6 rounded-2xl">
-                <p class="text-xs text-slate-400 uppercase font-semibold">本月经营目标达成</p>
-                <h3 class="text-3xl font-extrabold mt-2 text-teal-300">86.4%</h3>
+                <p class="text-xs text-slate-400 uppercase font-semibold">本月经营目标达成率</p>
+                <h3 class="text-3xl font-extrabold mt-2 text-teal-300" id="card-achieve-rate">86.4%</h3>
                 <p class="text-xs text-slate-400 mt-1">贸易回款与智能门锁出海稳步推进</p>
             </div>
             <div class="glass-card p-6 rounded-2xl">
-                <p class="text-xs text-slate-400 uppercase font-semibold">法定合规待办提醒</p>
-                <h3 class="text-3xl font-extrabold mt-2 text-amber-400">1 项进行中</h3>
-                <p class="text-xs text-slate-400 mt-1">11月 MPF 强积金供款及结算书归档</p>
+                <p class="text-xs text-slate-400 uppercase font-semibold">期末银行现金与存款</p>
+                <h3 class="text-3xl font-extrabold mt-2 text-amber-400" id="card-ending-cash">HKD 自动加载</h3>
+                <p class="text-xs text-slate-400 mt-1">四套账银行流水实时配平验证</p>
             </div>
             <div class="glass-card p-6 rounded-2xl">
-                <p class="text-xs text-slate-400 uppercase font-semibold">续签实质证据链</p>
-                <h3 class="text-3xl font-extrabold mt-2 text-emerald-400">状态：优秀</h3>
+                <p class="text-xs text-slate-400 uppercase font-semibold">续签黄金证据链</p>
+                <h3 class="text-3xl font-extrabold mt-2 text-emerald-400" id="card-evidence-rate">状态：优秀</h3>
                 <p class="text-xs text-slate-400 mt-1">满足入境处及银行合规审核标准</p>
             </div>
         </div>
@@ -116,5 +119,24 @@
     <footer class="text-center text-xs text-slate-500 py-8 border-t border-slate-900 mt-12">
         <p>&copy; 2026 HARTHELM & FUNSTOCK LIMITED. All Rights Reserved. | 坚持真实经营，赋能海外身份落地。</p>
     </footer>
+
+    <!-- 🟢 动态数据渲染核心脚本 -->
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            if (typeof window.FUNSTOCK_DATA !== 'undefined') {
+                const data = window.FUNSTOCK_DATA;
+                
+                // 动态填充各个核心指标
+                if(data.achieveRate) document.getElementById('card-achieve-rate').innerText = data.achieveRate;
+                if(data.endingCash) document.getElementById('card-ending-cash').innerText = "HKD " + data.endingCash;
+                if(data.evidenceRate) document.getElementById('card-evidence-rate').innerText = "归档率: " + data.evidenceRate;
+                if(data.updatedAt) document.getElementById('update-time').innerText = "下发/更新时间：" + data.updatedAt;
+                
+                console.log("✅ FUNSTOCK 动态数据加载成功：", data);
+            } else {
+                console.warn("⚠️ 未检测到 window.FUNSTOCK_DATA 对象，当前展示为静态默认快照。请检查 data.js 是否正确引入。");
+            }
+        });
+    </script>
 </body>
 </html>
