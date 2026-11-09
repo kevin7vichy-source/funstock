@@ -6,93 +6,106 @@
     <title>FUNSTOCK LIMITED · 每月经营计划与合规看板 (Client Secure Dashboard)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { navy: '#0B2545', teal: '#0E9F96', amber: '#F5A524', darkBg: '#090D16' },
+            fontFamily: { sans: ['Inter', 'Noto Sans SC', 'sans-serif'] }
+          }
+        }
+      }
+    </script>
+    <style>
+      .glass-card { background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+    </style>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between p-6 md:p-12">
+<body class="bg-darkBg text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between p-6 md:p-12 selection:bg-teal selection:text-white">
     <div class="max-w-4xl mx-auto w-full space-y-8">
         <!-- Header -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-6 space-y-4 md:space-y-0">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800/80 pb-6 space-y-4 md:space-y-0">
             <div>
-                <div class="flex items-center space-x-2 text-xs text-indigo-400 mb-1 font-mono">
+                <div class="flex items-center space-x-2 text-xs text-teal-400 mb-1.5 font-mono">
                     <i class="fa-solid fa-lock"></i><span>AES-256-GCM 客户端加密本地解密验证通过</span>
                 </div>
-                <h1 class="text-2xl font-bold tracking-tight">FUNSTOCK LIMITED 趣仓有限公司</h1>
+                <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">FUNSTOCK LIMITED 趣仓有限公司</h1>
                 <p class="text-sm text-slate-400 mt-1">2026年 11月 官方经营计划与法定合规交付看板</p>
             </div>
             <div class="text-right">
-                <span class="text-xs bg-indigo-950 text-indigo-300 px-3 py-1.5 rounded-full border border-indigo-800 font-medium">HARTHELM 专属交付系统</span>
-                <p class="text-xs text-slate-500 mt-2">下发日期：2026-11-01</p>
+                <span class="text-xs bg-teal/10 text-teal-300 px-3.5 py-1.5 rounded-full border border-teal/25 font-semibold">HARTHELM 专属交付系统</span>
+                <p class="text-xs text-slate-500 mt-2 font-mono">下发日期：2026-11-01</p>
             </div>
         </div>
 
         <!-- Summary Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                <p class="text-xs text-slate-400 uppercase">本月经营目标达成</p>
-                <h3 class="text-2xl font-bold mt-2 text-indigo-400">86.4%</h3>
-                <p class="text-xs text-slate-500 mt-1">贸易回款与智能门锁出海稳步推进</p>
+            <div class="glass-card p-6 rounded-2xl">
+                <p class="text-xs text-slate-400 uppercase font-semibold">本月经营目标达成</p>
+                <h3 class="text-3xl font-extrabold mt-2 text-teal-300">86.4%</h3>
+                <p class="text-xs text-slate-400 mt-1">贸易回款与智能门锁出海稳步推进</p>
             </div>
-            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                <p class="text-xs text-slate-400 uppercase">法定合规待办提醒</p>
-                <h3 class="text-2xl font-bold mt-2 text-amber-400">1 项进行中</h3>
-                <p class="text-xs text-slate-500 mt-1">11月 MPF 强积金供款及结算书归档</p>
+            <div class="glass-card p-6 rounded-2xl">
+                <p class="text-xs text-slate-400 uppercase font-semibold">法定合规待办提醒</p>
+                <h3 class="text-3xl font-extrabold mt-2 text-amber-400">1 项进行中</h3>
+                <p class="text-xs text-slate-400 mt-1">11月 MPF 强积金供款及结算书归档</p>
             </div>
-            <div class="bg-slate-900 p-6 rounded-xl border border-slate-800">
-                <p class="text-xs text-slate-400 uppercase">续签实质证据链</p>
-                <h3 class="text-2xl font-bold mt-2 text-emerald-400">状态：优秀</h3>
-                <p class="text-xs text-slate-500 mt-1">满足入境处及银行合规审核标准</p>
+            <div class="glass-card p-6 rounded-2xl">
+                <p class="text-xs text-slate-400 uppercase font-semibold">续签实质证据链</p>
+                <h3 class="text-3xl font-extrabold mt-2 text-emerald-400">状态：优秀</h3>
+                <p class="text-xs text-slate-400 mt-1">满足入境处及银行合规审核标准</p>
             </div>
         </div>
 
         <!-- Details Section -->
-        <div class="bg-slate-900 rounded-xl border border-slate-800 p-6 space-y-6">
-            <h3 class="font-bold text-lg flex items-center space-x-2">
-                <i class="fa-solid fa-list-check text-indigo-500"></i>
+        <div class="glass-card rounded-2xl p-6 md:p-8 space-y-6">
+            <h3 class="font-bold text-lg flex items-center space-x-2.5">
+                <i class="fa-solid fa-list-check text-teal-400"></i>
                 <span>本月核心经营计划与合规事项看板</span>
             </h3>
             
             <div class="space-y-4">
-                <div class="p-4 bg-slate-950 rounded-lg border border-slate-800/80 flex flex-col md:flex-row justify-between items-start md:items-center space-y-2 md:space-y-0">
+                <div class="p-4.5 bg-slate-900/80 rounded-xl border border-slate-800/80 flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0">
                     <div>
-                        <div class="flex items-center space-x-2">
-                            <span class="px-2 py-0.5 bg-indigo-950 text-indigo-300 text-xs rounded border border-indigo-900">法定合规</span>
-                            <h4 class="font-medium text-sm">香港 MPF 强积金供款及结算书归档</h4>
+                        <div class="flex items-center space-x-2.5">
+                            <span class="px-2.5 py-0.5 bg-indigo-950/80 text-indigo-300 text-xs rounded-md border border-indigo-800 font-medium">法定合规</span>
+                            <h4 class="font-semibold text-sm">香港 MPF 强积金供款及结算书归档</h4>
                         </div>
                         <p class="text-xs text-slate-400 mt-1">要求：每月 10 日前完成雇主与雇员强积金缴纳，确保本地雇佣实质。</p>
                     </div>
-                    <span class="text-xs bg-amber-500/20 text-amber-300 px-3 py-1 rounded">进行中 (Due: 11-10)</span>
+                    <span class="text-xs bg-amber-500/15 text-amber-300 px-3 py-1 rounded-full font-medium border border-amber-500/30 whitespace-nowrap">进行中 (Due: 11-10)</span>
                 </div>
 
-                <div class="p-4 bg-slate-950 rounded-lg border border-slate-800/80 flex flex-col md:flex-row justify-between items-start md:items-center space-y-2 md:space-y-0">
+                <div class="p-4.5 bg-slate-900/80 rounded-xl border border-slate-800/80 flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0">
                     <div>
-                        <div class="flex items-center space-x-2">
-                            <span class="px-2 py-0.5 bg-emerald-950 text-emerald-300 text-xs rounded border border-emerald-900">财务记账</span>
-                            <h4 class="font-medium text-sm">10月份银行月结单核对与四套账对账</h4>
+                        <div class="flex items-center space-x-2.5">
+                            <span class="px-2.5 py-0.5 bg-emerald-950/80 text-emerald-300 text-xs rounded-md border border-emerald-800 font-medium">财务记账</span>
+                            <h4 class="font-semibold text-sm">10月份银行月结单核对与四套账对账</h4>
                         </div>
                         <p class="text-xs text-slate-400 mt-1">要求：核对 HSBC 银行账户流水与会计记账凭证，确保账目平衡。</p>
                     </div>
-                    <span class="text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded">已完成 (Verified)</span>
+                    <span class="text-xs bg-emerald-500/15 text-emerald-300 px-3 py-1 rounded-full font-medium border border-emerald-500/30 whitespace-nowrap">已完成 (Verified)</span>
                 </div>
 
-                <div class="p-4 bg-slate-950 rounded-lg border border-slate-800/80 flex flex-col md:flex-row justify-between items-start md:items-center space-y-2 md:space-y-0">
+                <div class="p-4.5 bg-slate-900/80 rounded-xl border border-slate-800/80 flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0">
                     <div>
-                        <div class="flex items-center space-x-2">
-                            <span class="px-2 py-0.5 bg-blue-950 text-blue-300 text-xs rounded border border-blue-900">业务拓展</span>
-                            <h4 class="font-medium text-sm">跨境智能门锁与 FPC 供应链复核</h4>
+                        <div class="flex items-center space-x-2.5">
+                            <span class="px-2.5 py-0.5 bg-blue-950/80 text-blue-300 text-xs rounded-md border border-blue-800 font-medium">业务拓展</span>
+                            <h4 class="font-semibold text-sm">跨境智能门锁与 FPC 供应链复核</h4>
                         </div>
                         <p class="text-xs text-slate-400 mt-1">要求：推进东南亚及欧美跨境电商平台自营贸易发货与物流单据留存。</p>
                     </div>
-                    <span class="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded">进行中 (Progress: 60%)</span>
+                    <span class="text-xs bg-blue-500/15 text-blue-300 px-3 py-1 rounded-full font-medium border border-blue-500/30 whitespace-nowrap">进行中 (Progress: 60%)</span>
                 </div>
             </div>
         </div>
 
         <!-- Advisor Note -->
-        <div class="bg-indigo-950/40 border border-indigo-900/50 p-6 rounded-xl flex items-start space-x-4">
-            <div class="bg-indigo-600 p-3 rounded-lg text-white mt-0.5">
-                <i class="fa-solid fa-user-tie"></i>
+        <div class="bg-teal/10 border border-teal/25 p-6 md:p-8 rounded-2xl flex items-start space-x-4">
+            <div class="bg-teal p-3.5 rounded-xl text-white mt-0.5 shadow-lg shadow-teal/20">
+                <i class="fa-solid fa-user-tie text-lg"></i>
             </div>
-            <div class="space-y-1">
-                <h4 class="font-bold text-sm text-indigo-200">HARTHELM 专属顾问寄语</h4>
+            <div class="space-y-1.5">
+                <h4 class="font-bold text-sm text-teal-200">HARTHELM 专属顾问寄语</h4>
                 <p class="text-xs text-slate-300 leading-relaxed">
                     尊敬的 FUNSTOCK LIMITED 经营团队：本月各项合规及贸易经营数据已按香港现行标准录入系统。趣仓公司的真实市场运营与利润沉淀，是您未来香港身份平稳续签的最坚实底座。如有任何税务或银行业务调整需求，请随时联系您的专属 1+1 顾问小组。
                 </p>
@@ -100,7 +113,7 @@
         </div>
     </div>
 
-    <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-900 mt-12">
+    <footer class="text-center text-xs text-slate-500 py-8 border-t border-slate-900 mt-12">
         <p>&copy; 2026 HARTHELM & FUNSTOCK LIMITED. All Rights Reserved. | 坚持真实经营，赋能海外身份落地。</p>
     </footer>
 </body>
