@@ -254,11 +254,59 @@
             }
         }
 
-        async function handleAdvisorSubmit(e) {
-            e.preventDefault();
-            alert("正在提交顾问寄语/报告并同步至客户看板...");
-            // 顾问端提交逻辑与客户端类似，调用 action: "advisor_submit"
+       async function handleAdvisorSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
+    btn.innerText = "正在安全提交顾问报告与寄语...";
+    btn.disabled = true;
+
+    try {
+        const type = document.getElementById('a-type').value;
+        let base64Data = "";
+        let fileName = "";
+        
+        // 如果是上传 PDF 报告，转换为 Base64
+        if (type === 'consulting_report') {
+            const fileInput = document.getElementById('a-file');
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                fileName = file.name;
+                base64Data = await readFileAsBase64(file);
+            }
         }
+
+        const payload = {
+            action: "advisor_submit",
+            empId: document.getElementById('a-id').value,
+            empToken: document.getElementById('a-token').value,
+            clientCode: document.getElementById('a-client').value,
+            type: type,
+            noteText: document.getElementById('a-notetext').value,
+            reportTitle: document.getElementById('a-reptitle').value,
+            fileName: fileName,
+            fileData: base64Data
+        };
+
+        const response = await fetch(GAS_WEB_APP_URL, {
+            method: "POST",
+            body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+
+        if (result.status === "success") {
+            alert("✅ 顾问操作成功！已实时同步至对应客户看板。");
+            document.getElementById('form-advisor').reset();
+        } else {
+            alert("❌ 提交失败: " + result.message);
+        }
+    } catch (err) {
+        alert("❌ 网络或脚本通信异常: " + err);
+    } finally {
+        btn.innerText = originalText;
+        btn.disabled = false;
+    }
+}
     </script>
 </body>
 </html>
