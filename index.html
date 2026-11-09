@@ -7,14 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: { navy: '#0B2545', navy2: '#13315C', teal: '#0E9F96', amber: '#F5A524', ink: '#1E293B', muted: '#64748B', bg: '#F6F8FB' },
-        fontFamily: { sans: ['Inter', 'Noto Sans SC', 'sans-serif'] }
-      }
-    }
-  }
+  tailwind.config = { theme: { extend: { colors: { navy: '#0B2545', navy2: '#13315C', teal: '#0E9F96', amber: '#F5A524', ink: '#1E293B', muted: '#64748B', bg: '#F6F8FB' }, fontFamily: { sans: ['Inter', 'Noto Sans SC', 'sans-serif'] } } } }
 </script>
 <style>
   body { font-family: 'Inter', 'Noto Sans SC', sans-serif; color: #1E293B; background: #fff; overflow-x: hidden; }
@@ -24,7 +17,7 @@
   .img-hover-zoom:hover img { transform: scale(1.08); }
   .hero-bg { background: radial-gradient(1000px 420px at 85% -10%, rgba(14,159,150,.45), transparent 60%), linear-gradient(135deg, #0B2545 0%, #13315C 100%); }
   
-  /* 全局导航栏样式（写在页面里防闪烁，因为 JS 是后加载的） */
+  /* 导航骨架样式（防闪烁） */
   .custom-nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #E2E8F0; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
   .nav-container { max-width: 1280px; margin: 0 auto; padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; }
   .nav-links { display: flex; align-items: center; gap: 24px; font-size: 14px; font-weight: 700; }
@@ -35,7 +28,6 @@
   .lang-switch a { color: #64748B; }
   .lang-switch a.active { color: #0E9F96; font-weight: bold; }
   .menu-toggle { display: none; cursor: pointer; font-size: 28px; color: #0B2545; background: none; border: none; }
-  
   @media (max-width: 900px) {
     .menu-toggle { display: block; }
     .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.98); flex-direction: column; padding: 20px; gap: 16px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-bottom: 1px solid #ddd; }
@@ -46,7 +38,6 @@
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-  <!-- 自动化占位符：全局导航 -->
   <div id="global-header"></div>
 
   <main id="top" class="flex-grow">
@@ -128,13 +119,10 @@
     </section>
   </main>
 
-  <!-- 自动化占位符：全局底部 -->
   <div id="global-footer"></div>
 
-  <!-- 引入全局组件脚本 -->
+  <!-- 引入全局脚本 -->
   <script src="assets/js/global.js"></script>
-
-  <!-- 页面本地的动效脚本 -->
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
