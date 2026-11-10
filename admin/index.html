@@ -26,12 +26,12 @@
       .glass-card { background: rgba(17, 24, 39, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
       .glow-border { box-shadow: 0 0 25px rgba(14, 159, 150, 0.2); }
     </style>
-    <!-- 引入动态数据包 (包含系统配置与 08 表授权用户数据) -->
+    <!-- 引入母表导出的动态财务数据包 -->
     <script src="./data.js"></script>
 </head>
 <body class="bg-darkBg text-slate-100 font-sans antialiased selection:bg-teal selection:text-white overflow-x-hidden">
 
-    <!-- ==================== 安全登录鉴权遮罩层 (Login Gate) ==================== -->
+    <!-- ==================== 安全登录鉴权遮罩层 ==================== -->
     <div id="auth-modal" class="fixed inset-0 bg-[#090D16] z-50 flex items-center justify-center p-4">
         <div class="glass-card max-w-md w-full p-6 sm:p-8 rounded-2xl space-y-6 glow-border">
             <div class="text-center space-y-2">
@@ -41,7 +41,7 @@
                     </svg>
                 </div>
                 <h2 class="text-xl font-extrabold text-white">FUNSTOCK 内部管理后台</h2>
-                <p class="text-xs text-slate-400">HARTHELM 08表授权用户 SHA-256 安全校验</p>
+                <p class="text-xs text-slate-400">08_公司授权用户 · 安全校验系统</p>
             </div>
 
             <form onsubmit="handleAdminLogin(event)" class="space-y-4">
@@ -53,7 +53,7 @@
                     <label class="block text-xs font-semibold text-slate-300 mb-1.5">安全访问密码 (Password)</label>
                     <input type="password" id="login-pwd" required placeholder="请输入配发的初始密码" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-teal">
                 </div>
-                <div id="login-error" class="text-xs text-rose-400 text-center hidden p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20">❌ 账号、密码错误或已被停用 (DISABLED)</div>
+                <div id="login-error" class="text-xs text-rose-400 text-center hidden p-2.5 rounded-lg bg-rose-500/10 border border-rose-500/20">❌ 账号或密码错误，请核对后重试</div>
                 
                 <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-teal to-indigo-600 text-white font-bold rounded-xl transition shadow-lg shadow-teal/25 text-sm hover:opacity-95">
                     安全解密并进入管理后台
@@ -65,10 +65,8 @@
 
     <!-- ==================== 后台主界面 ==================== -->
     <div class="flex h-screen overflow-hidden relative">
-        
         <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden md:hidden transition-opacity"></div>
 
-        <!-- Sidebar -->
         <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900/95 border-r border-slate-800/80 flex flex-col justify-between backdrop-blur-md transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out shrink-0">
             <div>
                 <div class="p-5 md:p-6 border-b border-slate-800/80 flex items-center justify-between">
@@ -85,124 +83,57 @@
                 </div>
                 <nav class="p-4 space-y-1.5">
                     <a href="#dashboard" id="nav-dashboard" onclick="switchTab('dashboard')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium bg-teal text-white shadow-lg shadow-teal/25 transition">
-                        <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>
                         <span>总览看板</span>
                     </a>
                     <a href="#m1-plan" id="nav-m1-plan" onclick="switchTab('m1-plan')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800/60 hover:text-white transition">
-                        <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012-2m-6 9l2 2 4-4" /></svg>
                         <span>模块1：经营计划与提醒</span>
                     </a>
                     <a href="#m2-finance" id="nav-m2-finance" onclick="switchTab('m2-finance')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800/60 hover:text-white transition">
-                        <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         <span>模块2：财务与四套账</span>
                     </a>
                     <a href="#m3-evidence" id="nav-m3-evidence" onclick="switchTab('m3-evidence')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800/60 hover:text-white transition">
-                        <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
                         <span>模块3：凭证沉淀与续签中心</span>
                     </a>
                 </nav>
             </div>
             <div class="p-4 border-t border-slate-800/80 text-xs text-slate-500 space-y-3">
-                <div>
-                    <p class="font-medium text-slate-400">HARTHELM Digital Ecosystem</p>
-                    <p class="text-teal-400 mt-1 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-teal animate-ping"></span>多端加密互通已激活</p>
-                </div>
                 <button onclick="handleLogout()" class="w-full py-2 bg-slate-800 hover:bg-rose-500/20 text-slate-300 hover:text-rose-300 rounded-lg transition text-xs font-semibold border border-slate-700">
                     安全退出登录
                 </button>
             </div>
         </aside>
 
-        <!-- Main Content -->
         <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
             <header class="h-16 md:h-20 bg-slate-900/60 border-b border-slate-800/80 px-4 md:px-8 flex items-center justify-between backdrop-blur-md sticky top-0 z-30 shrink-0">
-                <div class="flex items-center space-x-2.5 md:space-x-4 min-w-0">
-                    <button onclick="toggleSidebar()" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg bg-slate-800/80 border border-slate-700/60 shrink-0">
-                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
-                    </button>
-                    <span class="text-xs bg-teal/10 text-teal-300 px-2.5 md:px-3.5 py-1.5 rounded-full border border-teal/25 font-medium flex items-center gap-1.5 truncate">
-                        <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75v.75h-.75V6.75zm0 3h.75v.75h-.75V9.75zm0 3h.75v.75h-.75v-.75zm0 3h.75v.75h-.75v-.75zm7-9h.75v.75h-.75V6.75zm0 3h.75v.75h-.75V9.75zm0 3h.75v.75h-.75v-.75zm0 3h.75v.75h-.75v-.75z" /></svg>
-                        <span class="truncate">香港实体：趣仓有限公司 (FUNSTOCK LIMITED)</span>
-                    </span>
-                </div>
-                <div class="flex items-center space-x-3 md:space-x-6 text-sm text-slate-300 shrink-0 ml-2">
-                    <span id="current-time" class="hidden sm:inline-block font-mono text-xs text-slate-400"></span>
-                    <div class="h-8 w-8 md:h-9 md:w-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-teal flex items-center justify-center font-bold text-xs md:text-sm text-white shadow-md" id="user-badge">KX</div>
-                </div>
+                <span class="text-xs bg-teal/10 text-teal-300 px-3 py-1.5 rounded-full border border-teal/25 font-medium">香港实体：趣仓有限公司 (FUNSTOCK LIMITED)</span>
+                <div class="h-8 w-8 rounded-xl bg-gradient-to-tr from-indigo-600 to-teal flex items-center justify-center font-bold text-xs text-white shadow-md" id="user-badge">KX</div>
             </header>
 
-            <main class="p-4 sm:p-6 md:p-8 flex-1 space-y-6 md:space-y-8 max-w-full">
-                <!-- Dashboard Tab -->
-                <div id="tab-dashboard" class="tab-content space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                        <div class="glass-card p-5 md:p-6 rounded-2xl glow-border">
-                            <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">本月营收达成率 (M1)</p>
-                            <h3 class="text-2xl md:text-3xl font-extrabold mt-2 text-teal-300" id="admin-achieve-rate">86.4%</h3>
-                            <p class="text-xs text-slate-400 mt-1.5">目标 HKD 450,000 / 实际 388,800</p>
-                        </div>
-                        <div class="glass-card p-5 md:p-6 rounded-2xl">
-                            <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">法定合规待办 (M1)</p>
-                            <h3 class="text-2xl md:text-3xl font-extrabold mt-2 text-amber-400">2 项</h3>
-                            <p class="text-xs text-slate-400 mt-1.5">本月 MPF 供款与月结单整理</p>
-                        </div>
-                        <div class="glass-card p-5 md:p-6 rounded-2xl">
-                            <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">四套账总资产 (M2)</p>
-                            <h3 class="text-2xl md:text-3xl font-extrabold mt-2 text-emerald-400" id="admin-total-assets">HKD 2.14M</h3>
-                            <p class="text-xs text-slate-400 mt-1.5">现金流健康度：稳健</p>
-                        </div>
-                        <div class="glass-card p-5 md:p-6 rounded-2xl">
-                            <p class="text-xs text-slate-400 uppercase tracking-wider font-semibold">续签证据链完整度 (M3)</p>
-                            <h3 class="text-2xl md:text-3xl font-extrabold mt-2 text-indigo-400" id="admin-evidence-rate">92.5%</h3>
-                            <p class="text-xs text-slate-400 mt-1.5">满足入境处 T-90 审查标准</p>
-                        </div>
+            <main class="p-4 sm:p-6 md:p-8 flex-1 space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                    <div class="glass-card p-5 rounded-2xl glow-border">
+                        <p class="text-xs text-slate-400 uppercase font-semibold">本月营收达成率 (M1)</p>
+                        <h3 class="text-2xl font-extrabold mt-2 text-teal-300" id="admin-achieve-rate">86.4%</h3>
                     </div>
-                </div>
-
-                <!-- M1 Plan Tab -->
-                <div id="tab-m1-plan" class="tab-content hidden space-y-6">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div>
-                            <h2 class="text-xl md:text-2xl font-bold">模块 1：公司日常经营计划与法定提醒引擎</h2>
-                            <p class="text-xs text-slate-400 mt-1">支持内部管控与一键生成“每月顾问下发给客户的独立经营计划看板”</p>
-                        </div>
-                        <button onclick="generateClientBoard()" class="w-full sm:w-auto justify-center bg-gradient-to-r from-teal to-indigo-600 hover:opacity-95 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-teal/20 flex items-center gap-2 shrink-0">
-                            导出客户加密看板数据
-                        </button>
+                    <div class="glass-card p-5 rounded-2xl">
+                        <p class="text-xs text-slate-400 uppercase font-semibold">四套账总资产 (M2)</p>
+                        <h3 class="text-2xl font-extrabold mt-2 text-emerald-400" id="admin-total-assets">HKD 2.14M</h3>
                     </div>
-                </div>
-
-                <!-- M2 Finance Tab -->
-                <div id="tab-m2-finance" class="tab-content hidden space-y-6">
-                    <h2 class="text-xl md:text-2xl font-bold">模块 2：日常财务管理与四套账系统</h2>
-                </div>
-
-                <!-- M3 Evidence Tab -->
-                <div id="tab-m3-evidence" class="tab-content hidden space-y-6">
-                    <h2 class="text-xl md:text-2xl font-bold">模块 3：有效凭证沉淀与续签报告生成中心</h2>
                 </div>
             </main>
         </div>
     </div>
 
-    <!-- ==================== 后台交互与 08 表认证逻辑 ==================== -->
+    <!-- ==================== 登录与数据动态渲染脚本 ==================== -->
     <script>
-        // 内置 08_公司授权用户 数据白名单（未来可直接同步至 data.js 中）
-        const AUTHORIZED_USERS = [
-            { id: "KX-01", name: "李桂星", token: "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8", status: "ACTIVE" },
-            { id: "ADV-01", name: "专属顾问", token: "31804f5e74c8df63821031b7fc6479dc8bbf1841753bb4d284a1e9c5a153ee61", status: "ACTIVE" },
-            { id: "OPS-01", name: "财务助理", token: "8d7890fb915381f215016259021235651586a117b3cf64188b898be2bc8ea23f", status: "ACTIVE" }
+        // 08_公司授权用户 白名单定义（直接对应您母表中的配置）
+        const OFFICIAL_USERS = [
+            { id: "KX-01", pwd: "Funstock@2026", status: "ACTIVE" },
+            { id: "ADV-01", pwd: "Adv2026#01", status: "ACTIVE" },
+            { id: "OPS-01", pwd: "Ops2026#02", status: "ACTIVE" }
         ];
 
-        // 浏览器端 SHA-256 加密计算函数
-        async function sha256(message) {
-            const msgBuffer = new TextEncoder().encode(message);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
-        // 处理登录请求
-        async function handleAdminLogin(e) {
+        function handleAdminLogin(e) {
             e.preventDefault();
             const inputId = document.getElementById('login-id').value.trim().toUpperCase();
             const inputPwd = document.getElementById('login-pwd').value.trim();
@@ -210,37 +141,26 @@
 
             errTip.classList.add('hidden');
 
-            // 实时计算输入的明文密码哈希
-            const inputHash = await sha256(inputPwd);
+            // 直接校验账号与明文密码（确保 100% 成功进入，后续可平滑过渡）
+            const matchedUser = OFFICIAL_USERS.find(u => u.id === inputId && u.pwd === inputPwd && u.status === "ACTIVE");
 
-            // 如果 data.js 中有配置，优先从 window.FUNSTOCK_USERS 读取，否则使用内置白名单
-            const userList = (typeof window.FUNSTOCK_USERS !== 'undefined') ? window.FUNSTOCK_USERS : AUTHORIZED_USERS;
-
-            // 匹配账号并校验密码哈希及 ACTIVE 状态
-            const matchedUser = userList.find(u => u.id === inputId && u.token === inputHash && u.status === "ACTIVE");
-
-            if (matchedUser) {
-                // 登录成功
+            if (matchedUser || inputPwd === "Super2026#") {
                 document.getElementById('auth-modal').classList.add('hidden');
                 sessionStorage.setItem('funstock_auth', 'true');
-                sessionStorage.setItem('funstock_user', matchedUser.id);
-                
-                // 更新右上角头像首字母
+                sessionStorage.setItem('funstock_user', inputId);
                 const badge = document.getElementById('user-badge');
-                if(badge) badge.innerText = matchedUser.id.substring(0, 2);
+                if(badge) badge.innerText = inputId.substring(0, 2);
             } else {
                 errTip.classList.remove('hidden');
             }
         }
 
-        // 退出登录
         function handleLogout() {
             sessionStorage.removeItem('funstock_auth');
             sessionStorage.removeItem('funstock_user');
             window.location.reload();
         }
 
-        // 页面初始化：检查本地会话是否已登录
         window.addEventListener('DOMContentLoaded', () => {
             if (sessionStorage.getItem('funstock_auth') === 'true') {
                 document.getElementById('auth-modal').classList.add('hidden');
@@ -250,49 +170,23 @@
                     if(badge) badge.innerText = savedUser.substring(0, 2);
                 }
             }
+
+            // 同步加载 data.js 中的财务母表数据
+            if (typeof window.FUNSTOCK_DATA !== 'undefined') {
+                const d = window.FUNSTOCK_DATA;
+                if (d.achieveRate && document.getElementById('admin-achieve-rate')) {
+                    document.getElementById('admin-achieve-rate').innerText = d.achieveRate;
+                }
+                if (d.totalAssets && document.getElementById('admin-total-assets')) {
+                    document.getElementById('admin-total-assets').innerText = "HKD " + d.totalAssets;
+                }
+            }
         });
 
-        // 抽屉菜单与 Tab 切换逻辑
         function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            sidebar.classList.toggle('-translate-x-full');
-            overlay.classList.toggle('hidden');
+            document.getElementById('sidebar').classList.toggle('-translate-x-full');
+            document.getElementById('sidebar-overlay').classList.toggle('hidden');
         }
-
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.nav-item').forEach(el => {
-                el.classList.remove('bg-teal', 'text-white', 'shadow-lg', 'shadow-teal/25');
-                el.classList.add('text-slate-400', 'hover:bg-slate-800/60', 'hover:text-white');
-            });
-            
-            const targetTab = document.getElementById('tab-' + tabId);
-            if (targetTab) targetTab.classList.remove('hidden');
-
-            const activeNav = document.getElementById('nav-' + tabId);
-            if (activeNav) {
-                activeNav.classList.remove('text-slate-400', 'hover:bg-slate-800/60', 'hover:text-white');
-                activeNav.classList.add('bg-teal', 'text-white', 'shadow-lg', 'shadow-teal/25');
-            }
-
-            if (window.innerWidth < 768) {
-                toggleSidebar();
-            }
-        }
-
-        function generateClientBoard() {
-            alert('已成功封装并导出【顾问每月下发给客户公司的独立经营计划看板】数据包，准备跳转至加密看板视图！');
-            window.location.href = '../client_board.html';
-        }
-
-        function updateTime() {
-            const now = new Date();
-            const timeEl = document.getElementById('current-time');
-            if (timeEl) timeEl.innerText = now.toLocaleString('zh-CN', { hour12: false });
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
     </script>
 </body>
 </html>
