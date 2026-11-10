@@ -5,12 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FUNSTOCK 趣仓 · 企业管理后台 (Admin Portal)</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script>
       tailwind.config = {
         theme: {
           extend: {
-            colors: { navy: '#0B2545', navy2: '#13315C', teal: '#0E9F96', amber: '#F5A524', darkBg: '#090D16', cardBg: '#111827' },
+            colors: { 
+              navy: '#0B2545', 
+              navy2: '#13315C',
+              teal: { DEFAULT: '#0E9F96', 200: '#99f6e4', 300: '#5eead4', 400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488' }, 
+              amber: { DEFAULT: '#F5A524', 300: '#fcd34d', 400: '#fbbf24', 500: '#f59e0b' }, 
+              darkBg: '#090D16',
+              cardBg: '#111827'
+            },
             fontFamily: { sans: ['Inter', 'Noto Sans SC', 'sans-serif'] }
           }
         }
@@ -19,9 +25,6 @@
     <style>
       .glass-card { background: rgba(17, 24, 39, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
       .glow-border { box-shadow: 0 0 20px rgba(14, 159, 150, 0.15); }
-      /* 隐藏滚动条但保留滚动功能 */
-      .no-scrollbar::-webkit-scrollbar { display: none; }
-      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
     <!-- 引入动态数据包 -->
     <script src="./data.js"></script>
@@ -29,10 +32,10 @@
 <body class="bg-darkBg text-slate-100 font-sans antialiased selection:bg-teal selection:text-white overflow-x-hidden">
     <div class="flex h-screen overflow-hidden relative">
         
-        <!-- 移动端背景遮罩层 (点击关闭侧边栏) -->
+        <!-- 移动端背景遮罩层 -->
         <div id="sidebar-overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden md:hidden transition-opacity"></div>
 
-        <!-- Sidebar (电脑端固定显示，手机端抽屉式滑出) -->
+        <!-- Sidebar -->
         <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900/95 border-r border-slate-800/80 flex flex-col justify-between backdrop-blur-md transform -translate-x-full md:relative md:translate-x-0 transition-transform duration-300 ease-in-out shrink-0">
             <div>
                 <div class="p-5 md:p-6 border-b border-slate-800/80 flex items-center justify-between">
@@ -43,23 +46,26 @@
                             <p class="text-[11px] text-teal-400 font-mono mt-0.5">趣仓公司管理后台 v2.0</p>
                         </div>
                     </div>
-                    <!-- 手机端关闭侧边栏按钮 -->
                     <button onclick="toggleSidebar()" class="md:hidden text-slate-400 hover:text-white p-1.5">
-                        <i class="fa-solid fa-xmark text-lg"></i>
+                        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
                     </button>
                 </div>
                 <nav class="p-4 space-y-1.5">
                     <a href="#dashboard" id="nav-dashboard" onclick="switchTab('dashboard')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium bg-teal text-white shadow-lg shadow-teal/25 transition">
-                        <i class="fa-solid fa-chart-pie w-5 shrink-0"></i><span>总览看板</span>
+                        <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" /></svg>
+                        <span>总览看板</span>
                     </a>
                     <a href="#m1-plan" id="nav-m1-plan" onclick="switchTab('m1-plan')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800/60 hover:text-white transition">
-                        <i class="fa-solid fa-calendar-check w-5 shrink-0"></i><span>模块1：经营计划与提醒</span>
+                        <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012-2m-6 9l2 2 4-4" /></svg>
+                        <span>模块1：经营计划与提醒</span>
                     </a>
                     <a href="#m2-finance" id="nav-m2-finance" onclick="switchTab('m2-finance')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800/60 hover:text-white transition">
-                        <i class="fa-solid fa-file-invoice-dollar w-5 shrink-0"></i><span>模块2：财务与四套账</span>
+                        <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span>模块2：财务与四套账</span>
                     </a>
                     <a href="#m3-evidence" id="nav-m3-evidence" onclick="switchTab('m3-evidence')" class="nav-item flex items-center space-x-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-400 hover:bg-slate-800/60 hover:text-white transition">
-                        <i class="fa-solid fa-shield-halved w-5 shrink-0"></i><span>模块3：凭证沉淀与续签中心</span>
+                        <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+                        <span>模块3：凭证沉淀与续签中心</span>
                     </a>
                 </nav>
             </div>
@@ -69,17 +75,15 @@
             </div>
         </aside>
 
-        <!-- Main Content (加入 min-w-0 防止 flex 子元素撑破屏幕) -->
+        <!-- Main Content -->
         <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
-            <!-- Header -->
             <header class="h-16 md:h-20 bg-slate-900/60 border-b border-slate-800/80 px-4 md:px-8 flex items-center justify-between backdrop-blur-md sticky top-0 z-30 shrink-0">
                 <div class="flex items-center space-x-2.5 md:space-x-4 min-w-0">
-                    <!-- 手机端汉堡菜单按钮 -->
                     <button onclick="toggleSidebar()" class="md:hidden text-slate-300 hover:text-white p-2 rounded-lg bg-slate-800/80 border border-slate-700/60 shrink-0">
-                        <i class="fa-solid fa-bars text-base"></i>
+                        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
                     </button>
                     <span class="text-xs bg-teal/10 text-teal-300 px-2.5 md:px-3.5 py-1.5 rounded-full border border-teal/25 font-medium flex items-center gap-1.5 truncate">
-                        <i class="fa-solid fa-building-columns shrink-0"></i>
+                        <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75v.75h-.75V6.75zm0 3h.75v.75h-.75V9.75zm0 3h.75v.75h-.75v-.75zm0 3h.75v.75h-.75v-.75zm7-9h.75v.75h-.75V6.75zm0 3h.75v.75h-.75V9.75zm0 3h.75v.75h-.75v-.75zm0 3h.75v.75h-.75v-.75z" /></svg>
                         <span class="truncate">香港实体：趣仓有限公司 (FUNSTOCK LIMITED)</span>
                     </span>
                 </div>
@@ -118,7 +122,10 @@
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
                         <div class="glass-card p-5 md:p-6 rounded-2xl">
                             <h3 class="text-sm md:text-base font-bold mb-4 md:mb-5 flex items-center justify-between gap-2">
-                                <span class="flex items-center gap-2 truncate"><i class="fa-solid fa-bell text-amber-400 shrink-0"></i><span class="truncate">模块1：近期法定与运营提醒事项</span></span>
+                                <span class="flex items-center gap-2 truncate">
+                                    <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" /></svg>
+                                    <span class="truncate">模块1：近期法定与运营提醒事项</span>
+                                </span>
                                 <button onclick="switchTab('m1-plan')" class="text-xs text-teal-400 hover:text-teal-300 font-semibold shrink-0">查看全部 →</button>
                             </h3>
                             <div class="space-y-3.5">
@@ -141,7 +148,8 @@
 
                         <div class="glass-card p-5 md:p-6 rounded-2xl">
                             <h3 class="text-sm md:text-base font-bold mb-4 md:mb-5 flex items-center gap-2">
-                                <i class="fa-solid fa-shield-check text-teal-400 shrink-0"></i><span>模块3：续签黄金证据链抓取状态</span>
+                                <svg class="w-4 h-4 text-teal-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" /></svg>
+                                <span>模块3：续签黄金证据链抓取状态</span>
                             </h3>
                             <div class="space-y-4">
                                 <div>
@@ -178,16 +186,16 @@
                             <p class="text-xs text-slate-400 mt-1">支持内部管控与一键生成“每月顾问下发给客户的独立经营计划看板”</p>
                         </div>
                         <button onclick="generateClientBoard()" class="w-full sm:w-auto justify-center bg-gradient-to-r from-teal to-indigo-600 hover:opacity-95 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-teal/20 flex items-center gap-2 shrink-0">
-                            <i class="fa-solid fa-file-arrow-down"></i>导出客户加密看板数据
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>
+                            导出客户加密看板数据
                         </button>
                     </div>
 
                     <div class="glass-card rounded-2xl overflow-hidden">
                         <div class="p-4 md:p-5 border-b border-slate-800/80 font-semibold text-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 bg-slate-900/50">
                             <span>2026年 11月 趣仓公司经营计划与合规事项矩阵</span>
-                            <span class="text-xs text-teal-400 font-mono"><i class="fa-solid fa-circle-nodes mr-1.5"></i>自动巡检引擎运行中</span>
+                            <span class="text-xs text-teal-400 font-mono flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-teal animate-pulse"></span>自动巡检引擎运行中</span>
                         </div>
-                        <!-- 手机端横向滚动表格容器 -->
                         <div class="overflow-x-auto w-full">
                             <table class="w-full min-w-[680px] text-left border-collapse whitespace-nowrap">
                                 <thead>
@@ -239,7 +247,8 @@
                             <p class="text-xs text-slate-400 mt-1">配合香港审计 (HK SME-FRS) 的日记账、合同台账及四套账勾稽引擎</p>
                         </div>
                         <button onclick="alert('已成功触发与模块3续签凭证的勾稽校验！')" class="w-full sm:w-auto justify-center bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2.5 rounded-xl text-sm font-semibold transition border border-slate-700 flex items-center shrink-0">
-                            <i class="fa-solid fa-rotate mr-2 text-teal-400"></i>四套账平衡校验
+                            <svg class="w-4 h-4 mr-2 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+                            四套账平衡校验
                         </button>
                     </div>
 
@@ -264,9 +273,9 @@
 
                     <div class="glass-card rounded-2xl p-4 md:p-6 overflow-hidden">
                         <h3 class="font-bold text-sm md:text-base mb-4 flex items-center gap-2">
-                            <i class="fa-solid fa-book text-teal-400 shrink-0"></i><span>最近日记账与证据链绑定明细 (GL Transactions)</span>
+                            <svg class="w-4 h-4 text-teal-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg>
+                            <span>最近日记账与证据链绑定明细 (GL Transactions)</span>
                         </h3>
-                        <!-- 手机端横向滚动表格容器 -->
                         <div class="overflow-x-auto w-full">
                             <table class="w-full min-w-[680px] text-left text-sm whitespace-nowrap">
                                 <thead>
@@ -286,7 +295,7 @@
                                         <td class="py-3.5 px-4 font-medium">11月香港办公室租金及厘印费</td>
                                         <td class="py-3.5 px-4 font-mono">18,500.00</td>
                                         <td class="py-3.5 px-4 font-mono text-xs text-slate-400">CT-LEASE-01</td>
-                                        <td class="py-3.5 pl-4"><span class="text-emerald-400 text-xs bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20"><i class="fa-solid fa-check mr-1"></i>已绑定租约与水单</span></td>
+                                        <td class="py-3.5 pl-4"><span class="text-emerald-400 text-xs bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">已绑定租约与水单</span></td>
                                     </tr>
                                     <tr>
                                         <td class="py-3.5 pr-4 font-mono text-xs text-teal-400">TX-202611-02</td>
@@ -294,7 +303,7 @@
                                         <td class="py-3.5 px-4 font-medium">跨境智能门锁出口贸易回款</td>
                                         <td class="py-3.5 px-4 font-mono text-emerald-400">+145,000.00</td>
                                         <td class="py-3.5 px-4 font-mono text-xs text-slate-400">CT-TRADE-12</td>
-                                        <td class="py-3.5 pl-4"><span class="text-emerald-400 text-xs bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20"><i class="fa-solid fa-check mr-1"></i>五件套齐备</span></td>
+                                        <td class="py-3.5 pl-4"><span class="text-emerald-400 text-xs bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">五件套齐备</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -310,7 +319,8 @@
                             <p class="text-xs text-slate-400 mt-1">自动归集四大黄金证据链，一键输出香港身份续签实质运营证据包与商业发展计划书</p>
                         </div>
                         <button onclick="alert('已成功触发《公司年度经营总结与未来发展计划书》AI 渲染引擎！')" class="w-full sm:w-auto justify-center bg-gradient-to-r from-teal to-indigo-600 hover:opacity-95 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition shadow-lg shadow-teal/20 flex items-center gap-2 shrink-0">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>一键生成续签总结报告
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" /></svg>
+                            一键生成续签总结报告
                         </button>
                     </div>
 
@@ -366,7 +376,6 @@
     </div>
 
     <script>
-        // 手机端抽屉菜单开关控制
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             const overlay = document.getElementById('sidebar-overlay');
@@ -380,7 +389,6 @@
             }
         }
 
-        // 切换模块标签页（兼容点击与 URL Hash 定位）
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.nav-item').forEach(el => {
@@ -397,7 +405,6 @@
                 activeNav.classList.add('bg-teal', 'text-white', 'shadow-lg', 'shadow-teal/25');
             }
 
-            // 如果在手机端点击了导航项，自动收起侧边栏
             if (window.innerWidth < 768) {
                 const sidebar = document.getElementById('sidebar');
                 if (!sidebar.classList.contains('-translate-x-full')) {
@@ -419,7 +426,6 @@
         setInterval(updateTime, 1000);
         updateTime();
 
-        // 页面初始化：检查 URL 哈希并加载 data.js 动态数据
         window.addEventListener('DOMContentLoaded', () => {
             const hash = window.location.hash.replace('#', '');
             if (['dashboard', 'm1-plan', 'm2-finance', 'm3-evidence'].includes(hash)) {
