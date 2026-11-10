@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FUNSTOCK & HARTHELM · 双端安全收件与工作台门户</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
@@ -18,56 +18,60 @@
     </script>
     <style>
       .glass-card { background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+      /* 解决 iOS/移动端 month 与 select 控件默认宽度溢出问题 */
+      input[type="month"] { -webkit-appearance: none; appearance: none; min-width: 0; }
     </style>
 </head>
-<body class="bg-darkBg text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between p-4 md:p-8 selection:bg-teal selection:text-white">
-    <div class="max-w-3xl mx-auto w-full space-y-6">
+<body class="bg-darkBg text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between p-3.5 sm:p-6 md:p-8 selection:bg-teal selection:text-white overflow-x-hidden">
+    <div class="max-w-3xl mx-auto w-full space-y-5 md:space-y-6 min-w-0">
         
         <!-- Header -->
-        <div class="text-center space-y-2 border-b border-slate-800 pb-6">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal/10 border border-teal/25 text-xs text-teal-300 font-mono">
-                <i class="fa-solid fa-shield-halved"></i> <span>TLS 256位加密安全传输通道</span>
+        <div class="text-center space-y-2 border-b border-slate-800 pb-5 md:pb-6">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-teal/10 border border-teal/25 text-[11px] sm:text-xs text-teal-300 font-mono max-w-full">
+                <i class="fa-solid fa-shield-halved shrink-0"></i>
+                <span class="truncate">TLS 256位加密安全传输通道</span>
             </div>
-            <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight">FUNSTOCK LIMITED · 数字化业务门户</h1>
-            <p class="text-xs md:text-sm text-slate-400">请选择您的身份通道登录并提交相关凭证或报告</p>
+            <h1 class="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight px-2">FUNSTOCK LIMITED · 数字化业务门户</h1>
+            <p class="text-xs sm:text-sm text-slate-400 px-2">请选择您的身份通道登录并提交相关凭证或报告</p>
         </div>
 
-        <!-- Role Switcher Tabs -->
-        <div class="flex rounded-xl bg-slate-900 p-1.5 border border-slate-800">
-            <button onclick="switchPortal('client')" id="btn-client" class="flex-1 py-2.5 rounded-lg text-sm font-bold bg-teal text-white transition shadow-md">
-                <i class="fa-solid fa-user-lock mr-2"></i>签约客户上传通道
+        <!-- Role Switcher Tabs (手机端自适应字号与内边距) -->
+        <div class="grid grid-cols-2 gap-1.5 rounded-xl bg-slate-900 p-1.5 border border-slate-800">
+            <button type="button" onclick="switchPortal('client')" id="btn-client" class="py-2.5 px-2 rounded-lg text-xs sm:text-sm font-bold bg-teal text-white transition shadow-md flex items-center justify-center gap-1.5 truncate">
+                <i class="fa-solid fa-user-lock shrink-0"></i><span class="truncate">签约客户上传通道</span>
             </button>
-            <button onclick="switchPortal('advisor')" id="btn-advisor" class="flex-1 py-2.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition">
-                <i class="fa-solid fa-user-tie mr-2"></i>顾问员工工作台
+            <button type="button" onclick="switchPortal('advisor')" id="btn-advisor" class="py-2.5 px-2 rounded-lg text-xs sm:text-sm font-bold text-slate-400 hover:text-white transition flex items-center justify-center gap-1.5 truncate">
+                <i class="fa-solid fa-user-tie shrink-0"></i><span class="truncate">顾问员工工作台</span>
             </button>
         </div>
 
         <!-- ==================== 客户端表单 ==================== -->
-        <div id="portal-client" class="glass-card rounded-2xl p-6 md:p-8 space-y-6">
-            <h2 class="text-lg font-bold flex items-center gap-2 text-teal-300">
-                <i class="fa-solid fa-file-arrow-up"></i> 客户固定凭证与敏感资料安全上传
+        <div id="portal-client" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 space-y-5 md:space-y-6 min-w-0">
+            <h2 class="text-base sm:text-lg font-bold flex items-center gap-2 text-teal-300">
+                <i class="fa-solid fa-file-arrow-up shrink-0"></i>
+                <span class="truncate">客户固定凭证与敏感资料安全上传</span>
             </h2>
             
-            <form id="form-client" onsubmit="handleClientSubmit(event)" class="space-y-4">
+            <form id="form-client" onsubmit="handleClientSubmit(event)" class="space-y-4 min-w-0">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">固定客户账号 (Client Code)</label>
-                        <input type="text" id="c-code" required placeholder="例如：FS-01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal">
+                    <div class="min-w-0">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">固定客户账号 (Client Code)</label>
+                        <input type="text" id="c-code" required placeholder="例如：FS-01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-teal min-w-0">
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">专属访问密码 (16位)</label>
-                        <input type="password" id="c-pwd" required placeholder="请输入签约时下发的独立密码" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal">
+                    <div class="min-w-0">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">专属访问密码 (16位)</label>
+                        <input type="password" id="c-pwd" required placeholder="请输入签约时下发的独立密码" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-teal min-w-0">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">所属运营月份</label>
-                        <input type="month" id="c-month" required value="2026-11" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal">
+                    <div class="min-w-0">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">所属运营月份</label>
+                        <input type="month" id="c-month" required value="2026-11" class="w-full block bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-teal min-w-0">
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">凭证或资料分类</label>
-                        <select id="c-category" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal">
+                    <div class="min-w-0">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">凭证或资料分类</label>
+                        <select id="c-category" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-teal min-w-0 truncate">
                             <option value="1_实体办公运作">1. 银行月结单 / 租约 / 水电账单</option>
                             <option value="2_真实贸易闭环">2. 贸易合同 / 发票 / 提单 / 水单</option>
                             <option value="3_本地雇佣贡献">3. 员工薪金水单 / 强积金 MPF 结算书</option>
@@ -77,84 +81,96 @@
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">业务摘要与说明备注</label>
-                    <textarea id="c-memo" rows="2" placeholder="请简述上传文件的具体内容或补充说明..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-teal"></textarea>
+                <div class="min-w-0">
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">业务摘要与说明备注</label>
+                    <textarea id="c-memo" rows="2" placeholder="请简述上传文件的具体内容或补充说明..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-teal min-w-0"></textarea>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">上传文件 (支持手机拍照、PDF、图片)</label>
-                    <input type="file" id="c-file" required class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-teal file:text-white hover:file:bg-teal-600 cursor-pointer bg-slate-900 border border-slate-700 rounded-xl">
-                </div>
-
-                <!-- PICS 隐私声明强制勾选框 -->
-                <div class="bg-slate-900/90 border border-slate-800 p-4 rounded-xl space-y-2">
-                    <div class="text-xs font-bold text-teal-400 flex items-center gap-1.5">
-                        <i class="fa-solid fa-file-contract"></i> 收集个人资料声明 (PICS) 与私隐政策告知
-                    </div>
-                    <p class="text-[11px] text-slate-400 leading-relaxed max-h-24 overflow-y-auto pr-2">
-                        根据香港《个人资料（私隐）条例》（PDPO），您所提交的一切公司及个人敏感资料，将仅用于 FUNSTOCK LIMITED 香港实体日常财务合规、执业会计师（CPA）法定审计准备及香港身份续签评估。所有文件经 TLS 256 位加密直接存入受控的 Google Drive 正本库（只增不删），绝不对外公开。您享有查阅及更正个人资料之权利。
-                    </p>
-                    <label class="flex items-start gap-2.5 pt-2 cursor-pointer select-none">
-                        <input type="checkbox" id="c-pics" required class="mt-0.5 w-4 h-4 rounded border-slate-700 text-teal focus:ring-teal bg-slate-900">
-                        <span class="text-xs font-medium text-slate-200">本人已完整阅读并同意上述《收集个人资料声明 (PICS)》，确认所提交资料真实有效。</span>
+                <!-- 防溢出的自定义文件上传组件 -->
+                <div class="min-w-0">
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">上传文件 (支持手机拍照、PDF、图片)</label>
+                    <label for="c-file" class="flex items-center w-full bg-slate-900 border border-slate-700 rounded-xl p-1.5 cursor-pointer hover:border-teal transition min-w-0 overflow-hidden">
+                        <span class="bg-teal hover:bg-teal-600 text-white text-xs font-bold px-3.5 py-2 rounded-lg shrink-0 transition">选择文件</span>
+                        <span id="c-file-name" class="ml-3 text-xs text-slate-400 truncate min-w-0 flex-1 pr-2">未选择任何文件</span>
+                        <input type="file" id="c-file" required class="sr-only" onchange="updateFileName('c-file', 'c-file-name')">
                     </label>
                 </div>
 
-                <button type="submit" id="btn-submit-client" class="w-full py-3.5 bg-gradient-to-r from-teal to-indigo-600 hover:opacity-95 text-white font-bold rounded-xl transition shadow-lg shadow-teal/25 text-sm">
+                <!-- PICS 隐私声明强制勾选框 -->
+                <div class="bg-slate-900/90 border border-slate-800 p-3.5 sm:p-4 rounded-xl space-y-2 min-w-0">
+                    <div class="text-xs font-bold text-teal-400 flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-contract shrink-0"></i>
+                        <span class="truncate">收集个人资料声明 (PICS) 与私隐政策告知</span>
+                    </div>
+                    <p class="text-[11px] text-slate-400 leading-relaxed max-h-24 overflow-y-auto pr-1 break-words">
+                        根据香港《个人资料（私隐）条例》（PDPO），您所提交的一切公司及个人敏感资料，将仅用于 FUNSTOCK LIMITED 香港实体日常财务合规、执业会计师（CPA）法定审计准备及香港身份续签评估。所有文件经 TLS 256 位加密直接存入受控的 Google Drive 正本库（只增不删），绝不对外公开。您享有查阅及更正个人资料之权利。
+                    </p>
+                    <label class="flex items-start gap-2.5 pt-2 cursor-pointer select-none">
+                        <input type="checkbox" id="c-pics" required class="mt-0.5 w-4 h-4 shrink-0 rounded border-slate-700 text-teal focus:ring-teal bg-slate-900">
+                        <span class="text-xs font-medium text-slate-200 leading-snug">本人已完整阅读并同意上述《收集个人资料声明 (PICS)》，确认所提交资料真实有效。</span>
+                    </label>
+                </div>
+
+                <button type="submit" id="btn-submit-client" class="w-full py-3.5 px-4 bg-gradient-to-r from-teal to-indigo-600 hover:opacity-95 text-white font-bold rounded-xl transition shadow-lg shadow-teal/25 text-sm">
                     确认签署 PICS 并安全上传凭证
                 </button>
             </form>
         </div>
 
         <!-- ==================== 顾问端表单 ==================== -->
-        <div id="portal-advisor" class="glass-card rounded-2xl p-6 md:p-8 space-y-6 hidden">
-            <h2 class="text-lg font-bold flex items-center gap-2 text-indigo-400">
-                <i class="fa-solid fa-laptop-code"></i> 顾问工作台：提交运营报告与寄语
+        <div id="portal-advisor" class="glass-card rounded-2xl p-4 sm:p-6 md:p-8 space-y-5 md:space-y-6 hidden min-w-0">
+            <h2 class="text-base sm:text-lg font-bold flex items-center gap-2 text-indigo-400">
+                <i class="fa-solid fa-laptop-code shrink-0"></i>
+                <span class="truncate">顾问工作台：提交运营报告与寄语</span>
             </h2>
             
-            <form id="form-advisor" onsubmit="handleAdvisorSubmit(event)" class="space-y-4">
+            <form id="form-advisor" onsubmit="handleAdvisorSubmit(event)" class="space-y-4 min-w-0">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">顾问员工工号</label>
-                        <input type="text" id="a-id" required placeholder="例如：ADV-01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    <div class="min-w-0">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">顾问员工工号</label>
+                        <input type="text" id="a-id" required placeholder="例如：ADV-01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-indigo-500 min-w-0">
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">内部授权 Token</label>
-                        <input type="password" id="a-token" required placeholder="请输入授权密钥" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                    <div class="min-w-0">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">内部授权 Token</label>
+                        <input type="password" id="a-token" required placeholder="请输入授权密钥" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-indigo-500 min-w-0">
                     </div>
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">目标客户代号</label>
-                    <input type="text" id="a-client" required placeholder="例如：FS-01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                <div class="min-w-0">
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">目标客户代号</label>
+                    <input type="text" id="a-client" required placeholder="例如：FS-01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-indigo-500 min-w-0">
                 </div>
 
-                <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">提交内容类型</label>
-                    <select id="a-type" onchange="toggleAdvisorFields()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                <div class="min-w-0">
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">提交内容类型</label>
+                    <select id="a-type" onchange="toggleAdvisorFields()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-indigo-500 min-w-0 truncate">
                         <option value="advisor_note">更新【每月专属顾问寄语/诊断建议】</option>
                         <option value="consulting_report">上传【公司运营咨询报告 / 续签发展计划书 (PDF)】</option>
                     </select>
                 </div>
 
-                <div id="field-note-container">
-                    <label class="block text-xs font-semibold text-slate-300 mb-1">顾问寄语正文 (将实时同步至客户加密看板)</label>
-                    <textarea id="a-notetext" rows="4" placeholder="请输入本月针对该客户的经营诊断与合规提醒..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500"></textarea>
+                <div id="field-note-container" class="min-w-0">
+                    <label class="block text-xs font-semibold text-slate-300 mb-1.5">顾问寄语正文 (将实时同步至客户加密看板)</label>
+                    <textarea id="a-notetext" rows="4" placeholder="请输入本月针对该客户的经营诊断与合规提醒..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-indigo-500 min-w-0"></textarea>
                 </div>
 
-                <div id="field-file-container" class="hidden space-y-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">报告标题名称</label>
-                        <input type="text" id="a-reptitle" placeholder="例如：2026年度商业实质运营总结报告" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500">
+                <div id="field-file-container" class="hidden space-y-4 min-w-0">
+                    <div class="min-w-0">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">报告标题名称</label>
+                        <input type="text" id="a-reptitle" placeholder="例如：2026年度商业实质运营总结报告" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3.5 py-2.5 text-base sm:text-sm text-white focus:outline-none focus:border-indigo-500 min-w-0">
                     </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-1">上传正式 PDF 报告文件</label>
-                        <input type="file" id="a-file" class="w-full text-xs text-slate-400 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 cursor-pointer bg-slate-900 border border-slate-700 rounded-xl">
+                    <!-- 防溢出的自定义文件上传组件 -->
+                    <div class="min-w-0">
+                        <label class="block text-xs font-semibold text-slate-300 mb-1.5">上传正式 PDF 报告文件</label>
+                        <label for="a-file" class="flex items-center w-full bg-slate-900 border border-slate-700 rounded-xl p-1.5 cursor-pointer hover:border-indigo-500 transition min-w-0 overflow-hidden">
+                            <span class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold px-3.5 py-2 rounded-lg shrink-0 transition">选择文件</span>
+                            <span id="a-file-name" class="ml-3 text-xs text-slate-400 truncate min-w-0 flex-1 pr-2">未选择任何文件</span>
+                            <input type="file" id="a-file" class="sr-only" onchange="updateFileName('a-file', 'a-file-name')">
+                        </label>
                     </div>
                 </div>
 
-                <button type="submit" class="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition shadow-lg shadow-indigo-600/25 text-sm">
+                <button type="submit" class="w-full py-3.5 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition shadow-lg shadow-indigo-600/25 text-sm">
                     提交顾问报告/寄语并同步看板
                 </button>
             </form>
@@ -162,24 +178,37 @@
 
     </div>
 
-    <footer class="text-center text-xs text-slate-500 py-6 mt-12 border-t border-slate-900">
+    <footer class="text-center text-[11px] sm:text-xs text-slate-500 py-6 mt-8 md:mt-12 border-t border-slate-900 px-2">
         <p>&copy; 2026 HARTHELM & FUNSTOCK LIMITED. All Rights Reserved. | 坚持真实经营，赋能海外身份落地。</p>
     </footer>
 
     <script>
-        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzMeKuk8qlKxcUiU_vQXL39LcaJkRMSqBnFy1T9Ey7LoTzDpxkezLtFjlr3bzOk-PxY/exec"; // 替换为您的 GAS 部署网址
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzMeKuk8qlKxcUiU_vQXL39LcaJkRMSqBnFy1T9Ey7LoTzDpxkezLtFjlr3bzOk-PxY/exec";
+
+        // 动态显示文件名并自动截断超长名称，防止撑破手机屏幕
+        function updateFileName(inputId, labelId) {
+            const input = document.getElementById(inputId);
+            const label = document.getElementById(labelId);
+            if (input.files && input.files.length > 0) {
+                label.innerText = input.files[0].name;
+                label.classList.replace('text-slate-400', 'text-teal-300');
+            } else {
+                label.innerText = "未选择任何文件";
+                label.classList.replace('text-teal-300', 'text-slate-400');
+            }
+        }
 
         function switchPortal(role) {
             if (role === 'client') {
                 document.getElementById('portal-client').classList.remove('hidden');
                 document.getElementById('portal-advisor').classList.add('hidden');
-                document.getElementById('btn-client').className = "flex-1 py-2.5 rounded-lg text-sm font-bold bg-teal text-white transition shadow-md";
-                document.getElementById('btn-advisor').className = "flex-1 py-2.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition";
+                document.getElementById('btn-client').className = "py-2.5 px-2 rounded-lg text-xs sm:text-sm font-bold bg-teal text-white transition shadow-md flex items-center justify-center gap-1.5 truncate";
+                document.getElementById('btn-advisor').className = "py-2.5 px-2 rounded-lg text-xs sm:text-sm font-bold text-slate-400 hover:text-white transition flex items-center justify-center gap-1.5 truncate";
             } else {
                 document.getElementById('portal-client').classList.add('hidden');
                 document.getElementById('portal-advisor').classList.remove('hidden');
-                document.getElementById('btn-advisor').className = "flex-1 py-2.5 rounded-lg text-sm font-bold bg-indigo-600 text-white transition shadow-md";
-                document.getElementById('btn-client').className = "flex-1 py-2.5 rounded-lg text-sm font-bold text-slate-400 hover:text-white transition";
+                document.getElementById('btn-advisor').className = "py-2.5 px-2 rounded-lg text-xs sm:text-sm font-bold bg-indigo-600 text-white transition shadow-md flex items-center justify-center gap-1.5 truncate";
+                document.getElementById('btn-client').className = "py-2.5 px-2 rounded-lg text-xs sm:text-sm font-bold text-slate-400 hover:text-white transition flex items-center justify-center gap-1.5 truncate";
             }
         }
 
@@ -243,6 +272,7 @@
                 if (result.status === "success") {
                     alert("✅ 凭证上传成功！已自动入库至 Google Drive 并完成 PICS 授权存证。");
                     document.getElementById('form-client').reset();
+                    updateFileName('c-file', 'c-file-name');
                 } else {
                     alert("❌ 上传失败: " + result.message);
                 }
@@ -254,59 +284,60 @@
             }
         }
 
-       async function handleAdvisorSubmit(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    const originalText = btn.innerText;
-    btn.innerText = "正在安全提交顾问报告与寄语...";
-    btn.disabled = true;
+        async function handleAdvisorSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = "正在安全提交顾问报告与寄语...";
+            btn.disabled = true;
 
-    try {
-        const type = document.getElementById('a-type').value;
-        let base64Data = "";
-        let fileName = "";
-        
-        // 如果是上传 PDF 报告，转换为 Base64
-        if (type === 'consulting_report') {
-            const fileInput = document.getElementById('a-file');
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                fileName = file.name;
-                base64Data = await readFileAsBase64(file);
+            try {
+                const type = document.getElementById('a-type').value;
+                let base64Data = "";
+                let fileName = "";
+                
+                if (type === 'consulting_report') {
+                    const fileInput = document.getElementById('a-file');
+                    if (fileInput.files.length > 0) {
+                        const file = fileInput.files[0];
+                        fileName = file.name;
+                        base64Data = await readFileAsBase64(file);
+                    }
+                }
+
+                const payload = {
+                    action: "advisor_submit",
+                    empId: document.getElementById('a-id').value,
+                    empToken: document.getElementById('a-token').value,
+                    clientCode: document.getElementById('a-client').value,
+                    type: type,
+                    noteText: document.getElementById('a-notetext').value,
+                    reportTitle: document.getElementById('a-reptitle').value,
+                    fileName: fileName,
+                    fileData: base64Data
+                };
+
+                const response = await fetch(GAS_WEB_APP_URL, {
+                    method: "POST",
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+
+                if (result.status === "success") {
+                    alert("✅ 顾问操作成功！已实时同步至对应客户看板。");
+                    document.getElementById('form-advisor').reset();
+                    updateFileName('a-file', 'a-file-name');
+                    toggleAdvisorFields();
+                } else {
+                    alert("❌ 提交失败: " + result.message);
+                }
+            } catch (err) {
+                alert("❌ 网络或脚本通信异常: " + err);
+            } finally {
+                btn.innerText = originalText;
+                btn.disabled = false;
             }
         }
-
-        const payload = {
-            action: "advisor_submit",
-            empId: document.getElementById('a-id').value,
-            empToken: document.getElementById('a-token').value,
-            clientCode: document.getElementById('a-client').value,
-            type: type,
-            noteText: document.getElementById('a-notetext').value,
-            reportTitle: document.getElementById('a-reptitle').value,
-            fileName: fileName,
-            fileData: base64Data
-        };
-
-        const response = await fetch(GAS_WEB_APP_URL, {
-            method: "POST",
-            body: JSON.stringify(payload)
-        });
-        const result = await response.json();
-
-        if (result.status === "success") {
-            alert("✅ 顾问操作成功！已实时同步至对应客户看板。");
-            document.getElementById('form-advisor').reset();
-        } else {
-            alert("❌ 提交失败: " + result.message);
-        }
-    } catch (err) {
-        alert("❌ 网络或脚本通信异常: " + err);
-    } finally {
-        btn.innerText = originalText;
-        btn.disabled = false;
-    }
-}
     </script>
 </body>
 </html>
